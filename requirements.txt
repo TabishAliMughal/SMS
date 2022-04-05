@@ -1,0 +1,7 @@
+django
+psycopg2-binary
+django-tenants
+django-import-export
+django-tenant-schemas
+django-storages
+boto3
