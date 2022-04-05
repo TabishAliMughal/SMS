@@ -11,16 +11,19 @@ from tenant_schemas.utils import tenant_context
 def HandleUser(request):
 	groups = [i.get('name') for i in request.user.groups.values('name')]
 	request.session['group'] = groups
-	site = request.META['HTTP_HOST'].split(":")[0]
-	school = get_object_or_404(School , schema_name = site.split(".")[0])
-	request.session['school'] = {
-		'pk' : school.pk ,
-		'short_name' : school.short_name ,
-		'full_name' : school.full_name ,
-		'principal_name' : school.principal_name ,
-		'active' : school.active ,
-	}
-	request.session.save()
+	try:
+		site = request.META['HTTP_HOST'].split(":")[0]
+		school = get_object_or_404(School , schema_name = site.split(".")[0])
+		request.session['school'] = {
+			'pk' : school.pk ,
+			'short_name' : school.short_name ,
+			'full_name' : school.full_name ,
+			'principal_name' : school.principal_name ,
+			'active' : school.active ,
+		}
+		request.session.save()
+	except:
+		pass
 
 
 def loginPage(request):
