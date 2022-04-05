@@ -21,9 +21,9 @@ def HandleUser(request):
 			'principal_name' : school.principal_name ,
 			'active' : school.active ,
 		}
-		request.session.save()
 	except:
 		pass
+	request.session.save()
 
 
 def loginPage(request):
