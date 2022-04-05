@@ -1,0 +1,59 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/notifications/pnotify.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_pnotify.js' %}"></script>
+{% endblock %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item active">Responsive</span>
+{% endblock %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h5>All Registered Schools</h5>
+        </div>
+        <div class="card-body">
+            <table class="table datatable-responsive">
+                <thead>
+                    <tr>
+                        <th>School Name</th>
+                        <th>Principal Name</th>
+                        <th>Contact</th>
+                        <th>Logo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in schools %}
+                        <tr>
+                            <td>{{ i.full_name }}<a class="float-right" href="http://{% for v in i.domain %}{{ v }}{% endfor %}" ><i class="icon-arrow-up-right32"></i></a></td>
+                            <td>{{ i.principal_name }}</td>
+                            <td>{{ i.mobile }}</td>
+                            <td>{{ i.logo }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% if message == "User Not Found" %}
+        <script>
+            window.onload = function () {
+                authenticationRejected();
+            }
+        </script>
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        function authenticationRejected(){
+            new PNotify({
+                title: "Can't Authenticate",
+                text: 'The Username Or Password you Entered Does Not Match With Any User.',
+                icon: 'icon-blocked',
+                type: 'error',
+            });
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switchery.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switch.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/form_checkboxes_radios.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/form_layouts.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/notifications/pnotify.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_pnotify.js' %}"></script>
+{% endblock %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item active">Add School</span>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Create School</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_short_name">Short name:</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" name="short_name" maxlength="10" required id="id_short_name" value="{% if form.short_name.value %}{{ form.short_name.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_full_name">Full name:</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" name="full_name" maxlength="100" required id="id_full_name" value="{% if form.full_name.value %}{{ form.full_name.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_address">Address:</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" name="address" maxlength="250" required id="id_address" value="{% if form.address.value %}{{ form.address.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_mobile">Mobile:</label>
+                    <div class="col-lg-9">
+                        <input type="number" class="form-control" name="mobile" min="-9223372036854775808" max="9223372036854775807" required id="id_mobile" value="{% if form.mobile.value %}{{ form.mobile.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_principal_name">Principal name:</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" name="principal_name" maxlength="50" required id="id_principal_name" value="{% if form.principal_name.value %}{{ form.principal_name.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_easypaisa">Easypaisa:</label>
+                    <div class="col-lg-9">
+                        <input type="number" class="form-control" name="easypaisa" min="-9223372036854775808" max="9223372036854775807" id="id_easypaisa" value="{% if form.easypaisa.value %}{{ form.easypaisa.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_logo">Logo:</label>
+                    <div class="col-lg-9">
+                        <div class="uniform-uploader">
+                            <input type="file" class="form-input-styled" name="logo" id="id_logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_active">Active:</label>
+                    <div class="col-lg-9">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input-styled" name="active" id="id_active" data-fouc="" {% if form.active.value %}checked{% endif %}>
+                        </div>
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Add School <i class="icon-paperplane ml-2"></i></button>
+                </div>
+            </form>
+            <!-- <button type="button" class="btn btn-danger" id="pnotify-already-exist">Launch <i class="icon-play3 ml-2"></i></button> -->
+            <!-- <button onclick="schoolExists()">abc</button> -->
+            {% if message == "School Short Name Already Exist" %}
+                <script>
+                    window.onload = function () {
+                        schoolExists();
+                    }
+                </script>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+
+    <script>
+        function schoolExists(){
+            new PNotify({
+                title: "Can't Create School",
+                text: 'The School Short Name You Are Trying To Add Already Exists.',
+                icon: 'icon-blocked',
+                type: 'error',
+            });
+        }
+    </script>
+{% endblock %}

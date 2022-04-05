@@ -1,0 +1,141 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Homework List</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">{{ student }}</h5>
+        </div>
+        <div class="card-body">
+            <h5>Today's Homework</h5>
+            <div class="datatable-scroll-wrap">
+                <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Class: activate to sort column descending" aria-sort="ascending">Teacher</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Subject: activate to sort column descending" aria-sort="ascending">Subject</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column descending" aria-sort="ascending">Date</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Status</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="" aria-sort="ascending"></th>
+                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in today_homework %}
+                            <tr role="row" class="odd" data-href="{% url 'student_homework:homework_detail' i.pk %}">
+                                <td>{{ i.teacher.name }}</td>
+                                <td>{{ i.subject }}</td>
+                                <td>{{ i.date }}</td>
+                                <td>
+                                    {% if i.status == None %}
+                                        <span class="badge badge-danger">Not Started</span>
+                                    {% elif i.status.status == False %}
+                                        <span class="badge badge-info">Started</span>
+                                    {% elif i.status.status == True %}
+                                        <span class="badge badge-success">Completed</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if i.status == None %}
+                                        <a href="{% url 'student_homework:homework_start' i.pk %}" class="dropdown-item"><i class="icon-play4"></i> Start</a>
+                                    {% elif i.status.status == False %}
+                                        <a href="{% url 'student_homework:homework_complete' i.pk %}" class="dropdown-item"><i class="icon-finish"></i> Complete</a>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <div class="list-icons">
+                                        <div class="dropdown">
+                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="{% url 'student_homework:homework_detail' i.pk %}" class="dropdown-item"><i class="icon-three-bars"></i> Detail</a>
+                                                {% if i.status == None %}
+                                                    <a href="{% url 'student_homework:homework_start' i.pk %}" class="dropdown-item"><i class="icon-play4"></i> Start</a>
+                                                {% elif i.status.status == False %}
+                                                    <a href="{% url 'student_homework:homework_complete' i.pk %}" class="dropdown-item"><i class="icon-finish"></i> Complete</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-body">
+            <h5>Previous Homework</h5>
+            <div class="datatable-scroll-wrap">
+                <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Class: activate to sort column descending" aria-sort="ascending">Teacher</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Subject: activate to sort column descending" aria-sort="ascending">Subject</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column descending" aria-sort="ascending">Date</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column descending" aria-sort="ascending">Status</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="" aria-sort="ascending"></th>
+                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in previous_homework %}
+                            <tr role="row" class="odd" data-href="{% url 'student_homework:homework_detail' i.pk %}">
+                                <td>{{ i.teacher.name }}</td>
+                                <td>{{ i.subject }}</td>
+                                <td>{{ i.date }}</td>
+                                <td>
+                                    {% if i.status == None %}
+                                        <span class="badge badge-danger">Not Started</span>
+                                    {% elif i.status.sstatustatus == False %}
+                                        <span class="badge badge-info">Started</span>
+                                    {% elif i.status.status == True %}
+                                        <span class="badge badge-success">Completed</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if i.status == None %}
+                                        <a href="{% url 'student_homework:homework_start' i.pk %}" class="dropdown-item"><i class="icon-play4"></i> Start</a>
+                                    {% elif i.status.status == False %}
+                                        <a href="{% url 'student_homework:homework_complete' i.pk %}" class="dropdown-item"><i class="icon-finish"></i> Complete</a>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <div class="list-icons">
+                                        <div class="dropdown">
+                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="{% url 'student_homework:homework_detail' i.pk %}" class="dropdown-item"><i class="icon-three-bars"></i> Detail</a>
+                                                {% if i.status == None %}
+                                                    <a href="{% url 'student_homework:homework_start' i.pk %}" class="dropdown-item"><i class="icon-play4"></i> Start</a>
+                                                {% elif i.status.status == False %}
+                                                    <a href="{% url 'student_homework:homework_complete' i.pk %}" class="dropdown-item"><i class="icon-finish"></i> Complete</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

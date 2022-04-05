@@ -1,0 +1,73 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Gr Register</span>
+{% endblock %}
+{% block page_js %}
+<script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+<script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">School Gr Register</h5>
+        </div>
+        <div class="datatable-scroll-wrap">
+            <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+            <thead>
+                <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="G.R Number: activate to sort column descending" aria-sort="ascending">G.R Number</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Student Name: activate to sort column descending" aria-sort="ascending">Student Name</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Father's Name: activate to sort column descending" aria-sort="ascending">Father's Name</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">Contact</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date Of Admission: activate to sort column descending" aria-sort="ascending">Date Of Admission</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Gender: activate to sort column descending" aria-sort="ascending">Gender</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date Of Birth: activate to sort column descending" aria-sort="ascending">Date Of Birth</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Status</th>
+                    <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in students %}
+                    <tr role="row" class="odd">
+                        <td tabindex="0" class="sorting_1" style="">{{ i.gr_number }}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.father_name }}</td>
+                        <td>{{ i.mobile1 }}</td>
+                        <td>{{ i.date_of_admission }}</td>
+                        <td>{{ i.gender }}</td>
+                        <td>{{ i.date_of_birth }}</td>
+                        <td>
+                            {% if i.active == True %}
+                                <span class="badge badge-success">Active</span>
+                            {% else %}
+                                <span class="badge badge-secondary">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center" style="">
+                            <div class="list-icons">
+                                <div class="dropdown">
+                                    <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="{% url 'school_student:student_edit' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Student History</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+    <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title">History Of "{{ student }}"</h5>
+            </div>
+            <div class="datatable-scroll-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Detailed Logs Of {{ student.name }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in history %}
+                        <tr>
+                            <td>{{ student }} Was Transfered To {{ i.current_class }} on {{ i.created }} on Section {{ i.current_section.serial }} ({{ i.current_section.name }}) </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>{{ student }} Was Admitted In Session {{ student.session_of_admission }} on Class {{ student.class_of_admission }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

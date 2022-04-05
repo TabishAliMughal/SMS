@@ -1,0 +1,86 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Homework Detail</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Homework Detail</h5>
+        </div>
+        <div class="card-body">
+            Class = {{ homework.clas.clas }}<br>
+            Section = {{ homework.clas.name }}<br>
+            Date = {{ homework.date }}<br>
+            Text = {{ homework.text }}<br>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Homework Images</h5>
+        </div>
+        <div class="card-body text-center">
+            {% for i in homework.images %}
+                <img style="width:80%" src="{{ i.image.url }}" >
+                <br>
+                <h6>{{ i.text }}</h6>
+            {% endfor %}
+            <br>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Homework Videos</h5>
+        </div>
+        <div class="card-body" style="width:80%;margin:auto;">
+            {% for i in homework.video %}
+                <div id="id_video_div">
+                </div>
+                <input class="abc" type="text" id="url" value="{{ i.video }}" hidden />
+                <input class="def" type="text" id="text" value="{{ i.text }}" hidden />
+            {% endfor %}
+            <br>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        function getId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+
+            return (match && match[2].length === 11)
+            ? match[2]
+            : null;
+        }
+        var video = document.getElementsByClassName("abc");
+        var text = document.getElementsByClassName("def");
+        for(var i = 0; i < video.length; i++){
+            var url = video[i].value;
+            var info = text[i].value;
+            var stat1 = url.includes('youtu.be');
+            var stat2 = url.includes('https://www.youtube.com/watch?v=');
+            var stat3 = url.includes('https://www.youtube.com/embed/');
+            var videoId ;
+            if(stat1 == true){
+                videoId = url.replace('https://youtu.be/','');
+            }if(stat2 == true){
+                videoId = url.replace('https://www.youtube.com/watch?v=','');
+            }if(stat3 == true){
+                videoId = url.replace('https://www.youtube.com/embed/','');
+            }
+            new_url = "https://www.youtube.com/embed/" + videoId
+            document.getElementById('id_video_div').innerHTML += '<div style="overflow:hidden;padding-bottom:56.25%;position:relative;height:0;"><iframe style="left:0;top:0;height:100%;width:100%;position:absolute;" class="video-frame" id="video" title="YouTube video player" frameborder="0" src="'+new_url+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><br>';
+            document.getElementById('id_video_div').innerHTML += '<div style="text-align:center" ><h6>'+info+'</h6></div><br><br>';
+
+        }
+    </script>
+{% endblock %}

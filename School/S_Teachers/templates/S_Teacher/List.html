@@ -1,0 +1,85 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Teacher List</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="datatable-scroll-wrap">
+            <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr role="row">
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Teacher's Name: activate to sort column descending" aria-sort="ascending">Teacher Name</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Father's Name: activate to sort column descending" aria-sort="ascending">Father's Name</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">Contact</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Class</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Salary</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Subjects</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Status</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="User: activate to sort column descending" aria-sort="ascending">Status</th>
+                        <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in teachers %}
+                        <tr role="row" class="odd">
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.father_name }}</td>
+                            <td>0{{ i.mobile1 }}</td>
+                            <td>{{ i.clas }}</td>
+                            <td>{{ i.salary }}</td>
+                            <td style="width: 300px;">
+                                {% for v in i.subjects.subjects.values_list %}
+                                    {{ v.1 }},
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if i.active == True %}
+                                    <span class="badge badge-success">Active</span>
+                                {% else %}
+                                    <span class="badge badge-secondary">Inactive</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if i.user %}
+                                    <span class="badge badge-info">{{ i.user }}</span>
+                                    <br>
+                                    <span class="badge badge-secondary">{{ i.password }}</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Not Given</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <div class="list-icons">
+                                    <div class="dropdown">
+                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{% url 'school_teacher:teacher_class' i.pk %}" class="dropdown-item"><i class="icon-stairs"></i> Change Class</a>
+                                            <a href="{% url 'school_teacher:teacher_subject' i.pk %}" class="dropdown-item"><i class="icon-book3"></i> Change Subject</a>
+                                            <a href="{% url 'school_teacher:teacher_salary' i.pk %}" class="dropdown-item"><i class="icon-cash2"></i> Change Salary</a>
+                                            <a href="{% url 'school_teacher:teacher_history' i.pk %}" class="dropdown-item"><i class="icon-history"></i> History</a>
+                                            <a href="{% url 'school_teacher:teacher_edit' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Edit</a>
+                                            {% if i.active %}
+                                                <a href="{% url 'school_teacher:teacher_user_handle' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Manage User</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

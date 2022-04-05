@@ -1,0 +1,96 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Student List</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <ul class="nav nav-tabs">
+            {% for k in students %}
+                <li class="nav-item"><a href="#class{{ k.class.pk }}" class="nav-link show" data-toggle="tab">{{ k.class }}</a></li>
+            {% endfor %}
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All</a>
+                <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(118px, 42px, 0px);">
+                    {% for k in students %}
+                        <a href="#class{{ k.class.pk }}" class="dropdown-item" data-toggle="tab" aria-expanded="Flase">{{ k.class }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+        </ul>
+        <div class="card-body">
+            <div class="tab-content">
+                {% for k in students %}
+                    <div class="tab-pane fade active show" id="class{{ k.class.pk }}">
+                        <div class="card">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">{{ k.class }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="datatable-scroll-wrap">
+                                    <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Student Name: activate to sort column descending" aria-sort="ascending">Student Name</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Father's Name: activate to sort column descending" aria-sort="ascending">Father's Name</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Gender: activate to sort column descending" aria-sort="ascending">Class</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Gender: activate to sort column descending" aria-sort="ascending">Section</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">Contact</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">User</th>
+                                                <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in k.students %}
+                                                <tr role="row" class="odd">
+                                                    <td>{{ i.name }}</td>
+                                                    <td>{{ i.father_name }}</td>
+                                                    <td>{{ i.current_class }}</td>
+                                                    <td>{{ i.current_section }}</td>
+                                                    <td>0{{ i.mobile1 }}<br>{% if i.mobile2 %}0{{ i.mobile2 }}{% endif %}</td>
+                                                    <td class="text-center">
+                                                        {% if i.user %}
+                                                            <span class="badge badge-info">{{ i.user }}</span>
+                                                            <br>
+                                                            <span class="badge badge-secondary">{{ i.password }}</span>
+                                                        {% else %}
+                                                            <span class="badge badge-danger">Not Given</span>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="list-icons">
+                                                            <div class="dropdown">
+                                                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                                    <i class="icon-menu9"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a href="{% url 'school_student:student_history' i.pk %}" class="dropdown-item"><i class="icon-history"></i> History</a>
+                                                                    <a href="{% url 'school_student:student_transfer' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Transfer</a>
+                                                                    {% if i.active %}
+                                                                        <a href="{% url 'school_student:student_user_handle' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Manage User</a>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

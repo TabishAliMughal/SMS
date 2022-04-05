@@ -1,0 +1,117 @@
+{% load static %}
+		<!-- Main sidebar -->
+		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+
+			<!-- Sidebar mobile toggler -->
+			<div class="sidebar-mobile-toggler text-center">
+				<a href="javascript:" class="sidebar-mobile-main-toggle">
+					<i class="icon-arrow-left8"></i>
+				</a>
+				Navigation
+				<a href="javascript:" class="sidebar-mobile-expand">
+					<i class="icon-screen-full"></i>
+					<i class="icon-screen-normal"></i>
+				</a>
+			</div>
+			<!-- /sidebar mobile toggler -->
+
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+
+				<!-- Main navigation -->
+				<div class="card card-sidebar-mobile">
+					<ul class="nav nav-sidebar" data-nav-type="accordion">
+						<!-- Main -->
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
+						{% for i in request.session.group %}
+							{% if i == 'School_Owner' %}
+								<li class="nav-item"><a href="{% url 'school:school_profile' %}" class="nav-link"><i class="icon-home2"></i> School Profile</a></li>
+								<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Data</div> <i class="icon-menu" title="Main"></i></li>
+								<li class="nav-item"><a href="{% url 'school_record:gr_register' %}" class="nav-link"><i class="icon-book3"></i> Gr Register</a></li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-users"></i> <span>Students</span></a>
+									
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'school_student:student_create' %}" class="nav-link">Add Student</a></li>
+										<li class="nav-item"><a href="{% url 'school_student:student_list' %}" class="nav-link">All Students</a></li>
+									</ul>
+								</li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-database2"></i> <span>Basic Data</span></a>
+
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'school_record:class_list' %}" class="nav-link">Class</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:session_list' %}" class="nav-link">Session</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:subject_list' %}" class="nav-link">Subject</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:class_subject_list' %}" class="nav-link">Class Subject</a></li>
+									</ul>
+								</li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-users4"></i> <span>Teachers</span></a>
+									
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'school_teacher:teacher_create' %}" class="nav-link">Add Teacher</a></li>
+										<li class="nav-item"><a href="{% url 'school_teacher:teacher_list' %}" class="nav-link">All Teachers</a></li>
+									</ul>
+								</li>
+							{% elif i == 'School_Teacher' %}
+								<li class="nav-item"><a href="{% url 'teacher:teacher_profile' %}" class="nav-link"><i class="icon-home2"></i> My Profile</a></li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-users"></i> <span>Students</span></a>
+
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'teacher_student:student_list' %}" class="nav-link">My Students</a></li>
+									</ul>
+								</li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-users"></i> <span>Homework</span></a>
+
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'teacher_homework:homework_create' %}" class="nav-link">Homework Create</a></li>
+										<li class="nav-item"><a href="{% url 'teacher_homework:homework_list' %}" class="nav-link">Homework List</a></li>
+									</ul>
+								</li>
+							{% elif i == 'School_Student' %}
+								<li class="nav-item"><a href="{% url 'student:student_profile' %}" class="nav-link"><i class="icon-home2"></i> My Profile</a></li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-users"></i> <span>Homework</span></a>
+
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'student_homework:homework_list' %}" class="nav-link">Homework List</a></li>
+									</ul>
+								</li>
+							{% elif i == 'Admin' %}
+								<li class="nav-item"><a href="/" class="nav-link"><i class="icon-home2"></i> Dashboard</a></li>
+								<li class="nav-item"><a href="{% url 'school:create_school' %}" class="nav-link"><i class="icon-add"></i> <span>Add School</span></a></li>
+							{% endif %}
+						{% endfor %}
+						{% if request.user.is_authenticated %}
+						{% else %}
+							<li class="nav-item"><a href="/" class="nav-link"><i class="icon-home2"></i> Dashboard</a></li>
+						{% endif %}
+						
+						
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Authentication</div> <i class="icon-menu" title="Forms"></i></li>
+                        
+
+                        {% if request.user.is_authenticated %}
+							<li class="nav-item">
+								<a href="{% url 'auth:logout' %}" class="nav-link">
+									<span class="pcoded-micon"><i class="icon-switch"></i></span><span class="pcoded-mtext">Logout</span>
+                            	</a>
+							</li>
+                        {% else %}
+                            <li class="nav-item"><a href="" id="id_login" class="nav-link" data-toggle="modal" data-target="#login_modal"><i class="icon-user"></i> <span>Login</span></a></li>
+                        {% endif %}
+
+					</ul>
+				</div>
+				<!-- /main navigation -->
+
+			</div>
+			<!-- /sidebar content -->
+			
+		</div>
+		<!-- /main sidebar -->

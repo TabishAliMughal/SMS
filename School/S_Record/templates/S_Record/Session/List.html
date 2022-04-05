@@ -1,0 +1,45 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item active">School</span>
+    <span class="breadcrumb-item active">Session</span>
+{% endblock %}
+{% block page_js %}
+<script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+<script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">School Sessions</h5>
+        </div>
+        <div class="card-body">
+            <div class="text-right">
+                <a href="{% url 'school_record:session_create' %}" class="btn btn-primary"><i class="icon-add mr-2"></i> New Session</a>
+            </div>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in session %}
+                            <tr>
+                                <td>{{ i.serial }}</td>
+                                <td>{{ i.name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

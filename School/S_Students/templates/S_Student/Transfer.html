@@ -1,0 +1,120 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block page_js %}
+<script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/forms/styling/switchery.min.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/forms/styling/switch.min.js' %}"></script>
+<script src="{% static './global_assets/js/demo_pages/form_checkboxes_radios.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+<script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+<script src="{% static './global_assets/js/demo_pages/form_layouts.js' %}"></script>
+{% endblock %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Transfer Student</span>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Transfer Student "{{ student }}"</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group row" hidden>
+                    <label class="col-lg-3 col-form-label" for="id_student">Student:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="student" required="" id="id_student">
+                            {% for i in form.student %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_current_clas">Class:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="current_class" required="" id="id_current_class">
+                            {% for i in form.current_class %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_current_section">Section:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="current_section" style="display: ;">
+                            <option value="">----------</option>
+                            {% for i in sections %}
+                                {% for v in i.sections %}
+                                    <option value="{{ v.pk }}" name="options" class_name="{{ i.class.pk }}">{{ v.name }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row" hidden>
+                    <label class="col-lg-3 col-form-label" for="id_valid">Valid:</label>
+                    <div class="col-lg-9">
+                        <input class="form-check-input-styled" type="checkbox" name="valid" id="id_valid" {% if form.valid.value == True %}checked=""{% endif %} data-fouc="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_current_session">Session:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="current_session" required="" id="id_current_session">
+                            {% for i in form.current_session %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Transfer <i class="icon-paperplane ml-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+
+        opt = document.getElementsByTagName('option');
+        for (i = 0; i < opt.length; i++) {
+            if (opt[i].hasAttribute('class_name')) {
+                if (opt[i].getAttribute('class_name') == document.getElementById('id_current_class').value){
+                    opt[i].style.display = 'block';
+                }else{
+                    opt[i].style.display = 'none';
+                }
+            };
+        }
+    </script>
+    <script>
+        document.getElementById('id_current_class').onchange = function () {
+            // const selects = document.getElementsByName('options');
+            // for (const select of selects) {
+            //     select.style.display = 'none';
+            // }
+            // const opyions = document.get('this.value');
+            els = document.getElementsByTagName('option')
+
+            for (i = 0; i < els.length; i++) {
+                if (els[i].hasAttribute('class_name')) {
+                    if (els[i].getAttribute('class_name') == this.value){
+                        els[i].style.display = 'block';
+                    }else{
+                        els[i].style.display = 'none';
+                    }
+                }
+            }
+            // const options = document.querySelectorAll('[class_name="{{this.value}}"]');
+            // for (const select of opyions) {
+            //     // select.style.display = 'block';
+            //     alert(select.getatt)
+            // }
+        }
+    </script>
+{% endblock %}

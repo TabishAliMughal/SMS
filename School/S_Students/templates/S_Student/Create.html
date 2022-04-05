@@ -1,0 +1,188 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switchery.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switch.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/form_checkboxes_radios.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/form_layouts.js' %}"></script>
+{% endblock %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Add Student</span>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Create Student</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_user">User:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="user" id="id_user">
+                            {% for i in form.user %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_gr_number">Gr number:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="number" name="gr_number" required="" id="id_gr_number" value="{% if form.gr_number.value %}{{ form.gr_number.value }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_name">Name:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="name" maxlength="50" required="" id="id_name" value="{% if form.name.value %}{{ form.name.value }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_father_name">Father name:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="father_name" maxlength="50" required="" id="id_father_name" value="{% if form.father_name.value %}{{ form.father_name.value }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_address">Address:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="address" maxlength="500" required="" id="id_address" value="{% if form.address.value %}{{ form.address.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label">Picture:</label>
+                    <div class="col-lg-9">
+                        <div class="uniform-uploader">
+                            <input type="file" class="form-input-styled" name="picture" id="id_picture" data-fouc="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_mobile1">Mobile1:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="number" name="mobile1" min="-9223372036854775808" max="9223372036854775807" required="" id="id_mobile1" value="{% if form.mobile1.value %}{{ form.mobile1.value }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_mobile2">Mobile2:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="number" name="mobile2" min="-9223372036854775808" max="9223372036854775807" id="id_mobile2" value="{% if form.mobile2.value %}{{ form.mobile2.value }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_class_of_admission">Class of admission:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="class_of_admission" required="" id="id_class_of_admission">
+                            {% for i in form.class_of_admission %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_session_of_admission">Session of admission:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="session_of_admission" required="" id="id_session_of_admission">
+                            {% for i in form.session_of_admission %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_date_of_admission">Date of admission:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="date" name="date_of_admission" required="" id="id_date_of_admission" value="{% if form.date_of_admission.value %}{{ form.doa }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_last_school">Last school:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="last_school" id="id_last_school">
+                            {% for i in form.last_school %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_religion">Religion:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="religion" required="" id="id_religion">
+                            {% for i in form.religion %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_gender">Gender:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="gender" required="" id="id_gender">
+                            {% for i in form.gender %}
+                                {{ i }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_date_of_birth">Date of birth:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="date" name="date_of_birth" required="" id="id_date_of_birth" value="{% if form.date_of_birth.value %}{{ form.dob }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_active">Active:</label>
+                    <div class="col-lg-9">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input-styled" name="active" id="id_active" {% if form.active.value == True %}checked=""{% endif %} data-fouc="">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_left_date">Left date:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="date" name="left_date" id="id_left_date" value="{% if form.left_date.value %}{{ form.left_date.value }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_reason_of_left">Reason of left:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="reason_of_left" maxlength="500" id="id_reason_of_left" value="{% if form.reason_of_left.value %}{{ form.reason_of_left.value }}{% endif %}">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_remarks">Remarks:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="remarks" maxlength="500" id="id_remarks" value="{% if form.remarks.value %}{{ form.remarks.value }}{% endif %}">
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Add Student <i class="icon-paperplane ml-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

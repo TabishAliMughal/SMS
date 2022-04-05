@@ -1,0 +1,34 @@
+<div id="login_modal" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Horizontal form</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <form action="{% url 'auth:login' %}" class="form-horizontal" method="POST">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">UserName</label>
+                        <div class="col-sm-9">
+                            <input type="text" placeholder="Username" class="form-control" name="username">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" placeholder="Password" class="form-control" name="password">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-primary">Login</button>
+                    </div>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>

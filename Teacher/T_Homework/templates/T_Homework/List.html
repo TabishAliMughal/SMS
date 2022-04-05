@@ -1,0 +1,77 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Homework List</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">{{ teacher.clas }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="text-right">
+                <a href="{% url 'teacher_homework:homework_create' %}" class="btn btn-primary"><i class="icon-add mr-2"></i> New Homework</a>
+            </div>
+            <br>
+            <div class="datatable-scroll-wrap">
+                <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Class: activate to sort column descending" aria-sort="ascending">Class</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Section: activate to sort column descending" aria-sort="ascending">Section</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Subject: activate to sort column descending" aria-sort="ascending">Subject</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column descending" aria-sort="ascending">Date</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Status</th>
+                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in homework %}
+                            <tr role="row" class="odd" data-href="{% url 'teacher_homework:homework_detail' i.pk %}">
+                                <td>{{ i.clas.clas }}</td>
+                                <td>{{ i.clas.name }}</td>
+                                <td>{{ i.subject }}</td>
+                                <td>{{ i.date }}</td>
+                                <td><button type="button" class="btn btn-primary" data-popup="popover" title="" data-content="{% for v in i.status.completed %}{{ v }}{% endfor %}" data-original-title="Completed Students">{{ i.status.completed_count }} of {{ i.status.incomplete_count }}</button></td>
+                                <td class="text-center">
+                                    <div class="list-icons">
+                                        <div class="dropdown">
+                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="{% url 'teacher_homework:homework_detail' i.pk %}" class="dropdown-item"><i class="icon-three-bars"></i> Detail</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <!-- <script>
+        jQuery(document).ready(function($) {
+            $(".odd").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+        jQuery(document).ready(function($) {
+            $(".even").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script> -->
+{% endblock %}
