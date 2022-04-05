@@ -21,9 +21,12 @@ def ManageMainPageView(request):
         # if 'School_Student' in [i for i in request.session.get('group')]:
         #     return redirect('student:student_profile')
     site = request.META['HTTP_HOST'].split(":")[0]
-    if "." in site:
-        school = get_object_or_404(School , schema_name = site.split(".")[0])
-        return redirect('school:school_profile')
+    try:
+        if "." in site:
+            school = get_object_or_404(School , schema_name = site.split(".")[0])
+            return redirect('school:school_profile')
+    except:
+        pass
     schools = []
     for i in School.objects.all():
         i.domain = [v for v in Domain.objects.all().filter(tenant = i)]
