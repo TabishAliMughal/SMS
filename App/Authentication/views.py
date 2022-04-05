@@ -33,7 +33,7 @@ def loginPage(request):
 		password =request.POST.get('password')
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
-			if "." not in request.META['HTTP_HOST']:
+			if "." not in request.META['HTTP_HOST'][:-5]:
 				school = "public"
 			else:
 				school = request.META['HTTP_HOST'].split(".")[0]
