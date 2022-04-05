@@ -11,6 +11,7 @@ from tenant_schemas.utils import tenant_context
 def HandleUser(request):
 	groups = [i.get('name') for i in request.user.groups.values('name')]
 	request.session['group'] = groups
+	request.session.save()
 	try:
 		site = request.META['HTTP_HOST'].split(":")[0]
 		school = get_object_or_404(School , schema_name = site.split(".")[0])
@@ -21,9 +22,9 @@ def HandleUser(request):
 			'principal_name' : school.principal_name ,
 			'active' : school.active ,
 		}
+		request.session.save()
 	except:
 		pass
-	request.session.save()
 
 
 def loginPage(request):
