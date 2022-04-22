@@ -1,4 +1,5 @@
 from django.shortcuts import render , get_object_or_404 , redirect
+from App.Authentication.views import GenerateQR
 from School.S_Students.models import Student, StudentFee , StudentStatus
 from School.S_Record.models import ClassSection , Class , Session , FeeTypes
 from School.S_Students.forms import ManageStudentCreateForm , ManageStudentStatusCreateForm , ManageStudentFeeCreateForm
@@ -6,7 +7,6 @@ from django.contrib.auth.models import Group , User
 from App.Authentication.forms import UserCreationForm
 from App.Authentication.user_handeling import allowed_users
 from django.contrib.auth.decorators import login_required
-
 
 
 @login_required(login_url='main:login')
@@ -197,10 +197,23 @@ def ManageSchoolStudentManageUserView(request,pk):
                 'message' : message ,
             }
             return render(request,'S_Student/User/ChangePassword.html',context)
-        # else:
-        #     form = UserCreationForm(instance = user)
-        #     context = {
-        #         'student' : student ,
-        #         'form' : form ,
-        #     }
-        #     return render(request,'S_Student/User/ChangePassword.html',context)
+        else:
+            form = UserCreationForm(instance = user)
+            context = {
+                'student' : student ,
+                'form' : form ,
+            }
+            return render(request,'S_Student/User/ChangePassword.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolStudentQRGenerateView(request,pk):
+    student = get_object_or_404(Student , pk = pk)
+    qr = GenerateQR(student.user.username)
+    context = {
+        'student' : student ,
+        'qr' : qr ,
+    }
+    return render(request,'S_Student/User/QR.html',context)
+
+    

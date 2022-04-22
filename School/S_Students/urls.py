@@ -12,5 +12,5 @@ urlpatterns = [
     path('history/<pk>',views.ManageSchoolStudentHistoryView,name='student_history'),
     path('user/<pk>',views.ManageSchoolStudentManageUserView,name='student_user_handle'),
     path('transfer/<pk>',views.ManageSchoolStudentTransferView,name='student_transfer'),
-
+    path('user/qr/<pk>',views.ManageSchoolStudentQRGenerateView,name='student_id_qr'),
 ]

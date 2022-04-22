@@ -1,4 +1,5 @@
 from django.shortcuts import render , get_object_or_404 , redirect
+from App.Authentication.views import GenerateQR
 from School.S_Teachers.models import Teacher , TeacherSubject , TeacherClass , TeacherSalary
 from .forms import ManageTeacherCreateForm , ManageTeacherSalaryCreateForm , ManageTeacherClassCreateForm , ManageTeacherSubjectCreateForm
 import datetime
@@ -234,3 +235,14 @@ def ManageSchoolTeacherManageUserView(request,pk):
                 'form' : form ,
             }
             return render(request,'S_Teacher/User/ChangePassword.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolTeacherQRGenerateView(request,pk):
+    teacher = get_object_or_404(Teacher , pk = pk)
+    qr = GenerateQR(teacher.user.username)
+    context = {
+        'teacher' : teacher ,
+        'qr' : qr ,
+    }
+    return render(request,'S_Student/User/QR.html',context)

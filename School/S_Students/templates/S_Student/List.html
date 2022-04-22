@@ -76,7 +76,10 @@
                                                                     <a href="{% url 'school_student:student_transfer' i.pk %}" class="dropdown-item"><i class="icon-transmission"></i> Transfer</a>
                                                                     <a href="{% url 'school_fee:student_due_fee_collect_bulk' i.pk %}" class="dropdown-item"><i class="icon-cash2"></i> Collect Fee</a>
                                                                     {% if i.active %}
-                                                                        <a href="{% url 'school_student:student_user_handle' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Manage User</a>
+                                                                        <a href="{% url 'school_student:student_user_handle' i.pk %}" class="dropdown-item"><i class="icon-user"></i> Manage User</a>
+                                                                    {% endif %}
+                                                                    {% if i.user %}
+                                                                        <a href="{% url 'school_student:student_id_qr' i.pk %}" class="dropdown-item"><i class="icon-qrcode"></i> Generate QR</a>
                                                                     {% endif %}
                                                                 </div>
                                                             </div>

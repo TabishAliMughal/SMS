@@ -68,9 +68,12 @@
                                             <a href="{% url 'school_teacher:teacher_subject' i.pk %}" class="dropdown-item"><i class="icon-book3"></i> Change Subject</a>
                                             <a href="{% url 'school_teacher:teacher_salary' i.pk %}" class="dropdown-item"><i class="icon-cash2"></i> Change Salary</a>
                                             <a href="{% url 'school_teacher:teacher_history' i.pk %}" class="dropdown-item"><i class="icon-history"></i> History</a>
-                                            <a href="{% url 'school_teacher:teacher_edit' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Edit</a>
+                                            <a href="{% url 'school_teacher:teacher_edit' i.pk %}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
                                             {% if i.active %}
-                                                <a href="{% url 'school_teacher:teacher_user_handle' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Manage User</a>
+                                                <a href="{% url 'school_teacher:teacher_user_handle' i.pk %}" class="dropdown-item"><i class="icon-user"></i> Manage User</a>
+                                            {% endif %}
+                                            {% if i.user %}
+                                                <a href="{% url 'school_teacher:teacher_id_qr' i.pk %}" class="dropdown-item"><i class="icon-qrcode"></i> Generate QR</a>
                                             {% endif %}
                                         </div>
                                     </div>

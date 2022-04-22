@@ -12,4 +12,5 @@ urlpatterns = [
     path('salary/<pk>',views.ManageTeacherSalaryCreateView , name = 'teacher_salary'),
     path('subject/<pk>',views.ManageTeacherSubjectCreateView , name = 'teacher_subject'),
     path('user/<pk>',views.ManageSchoolTeacherManageUserView , name = 'teacher_user_handle'),
+    path('user/qr/<pk>',views.ManageSchoolTeacherQRGenerateView,name='teacher_id_qr'),
 ]
