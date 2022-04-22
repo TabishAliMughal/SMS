@@ -1,0 +1,58 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Collect Fee</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/demo_pages/extra_sweetalert.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/notifications/sweet_alert.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h6 class="card-title">Select Student To Collect Fee</h6>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_student">Student:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="number" name="student" required="" id="id_gr" >
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Search <i class="icon-paperplane ml-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if message == 'Not Found' %}
+        <script>
+            window.onload = function () {
+                alertNotFoundMessage();
+            }
+        </script>
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        function alertNotFoundMessage(){
+            var swalInit = swal.mixin({
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-light'
+            });
+            swalInit({
+                text: "Student With Gr # {{ gr }} Not Found",
+                type: "error",
+            }).then(function(result) {
+                if(result.value) {
+                    window.location.href = "{% url 'school_fee:fee_collect' %}";
+                }
+            })
+        }
+    </script>
+{% endblock %}

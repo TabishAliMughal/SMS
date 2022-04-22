@@ -1,36 +1,44 @@
 {% extends "MainPage.html" %}
 {% load static %}
-{% block page_js %}
-    <script src="{% static './global_assets/js/plugins/notifications/pnotify.min.js' %}"></script>
-    <script src="{% static './global_assets/js/demo_pages/extra_pnotify.js' %}"></script>
-{% endblock %}
 {% block navigation %}
     <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-    <span class="breadcrumb-item active">Responsive</span>
+    <span class="breadcrumb-item active">Schools</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/notifications/pnotify.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_pnotify.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_sweetalert.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/notifications/sweet_alert.min.js' %}"></script>
 {% endblock %}
 {% block content %}
-
     <div class="card">
-        <div class="card-header">
-            <h5>All Registered Schools</h5>
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Registered Schools</h5>
         </div>
-        <div class="card-body">
-            <table class="table datatable-responsive">
+        <div class="datatable-scroll-wrap">
+            <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
                 <thead>
-                    <tr>
-                        <th>School Name</th>
-                        <th>Principal Name</th>
-                        <th>Contact</th>
-                        <th>Logo</th>
+                    <tr role="row">
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="G.R Number: activate to sort column descending" aria-sort="ascending">School Name</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">Contact</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Student Name: activate to sort column descending" aria-sort="ascending">Principal Name</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Father's Name: activate to sort column descending" aria-sort="ascending">Total Students</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date Of Admission: activate to sort column descending" aria-sort="ascending">Total Teachers</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for i in schools %}
-                        <tr>
-                            <td>{{ i.full_name }}<a class="float-right" href="http://{% for v in i.domain %}{{ v }}{% endfor %}" ><i class="icon-arrow-up-right32"></i></a></td>
-                            <td>{{ i.principal_name }}</td>
+                        <tr role="row" class="odd">
+                            <td tabindex="0" class="sorting_1" style="">{{ i.full_name }}<a class="float-right" href="http://{% for v in i.domain %}{{ v }}{% endfor %}" ><i class="icon-arrow-up-right32"></i></a></td>
                             <td>{{ i.mobile }}</td>
-                            <td>{{ i.logo }}</td>
+                            <td>{{ i.principal_name }}</td>
+                            <td>{{ i.students.count }} <a data-popup="popover" data-placement="top" title="" data-content="{% for v in i.students.students %}#{{ v }} {% endfor %}" data-original-title="Students List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
+                            <td>{{ i.teachers.count }} <a data-popup="popover" data-placement="top" title="" data-content="{% for v in i.teachers.teachers %}#{{ v }} {% endfor %}" data-original-title="Teachers List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
+                            <td hidden></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -50,9 +58,21 @@
         function authenticationRejected(){
             new PNotify({
                 title: "Can't Authenticate",
-                text: 'The Username Or Password you Entered Does Not Match With Any User.',
+                text: 'The Username Or Password You Entered Does Not Match With Any User.',
                 icon: 'icon-blocked',
                 type: 'error',
+            });
+            var swalInit = swal.mixin({
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-light'
+            });
+            swalInit({
+                title: "Can't Authenticate",
+                text: 'The Username Or Password You Entered Does Not Match With Any User.',
+                type: 'error',
+                showCancelButton: false,
+                confirmButtonText: 'OK'
             });
         }
     </script>

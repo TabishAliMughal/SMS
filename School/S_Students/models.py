@@ -1,7 +1,8 @@
 from django.db import models
-from School.S_Record.models import Class , ClassSection , Session
+from School.S_Record.models import Class , ClassSection , Session , FeeTypes
 from django.contrib.auth.models import User
 from School.S_School.models import School
+
 
 
 class Student(models.Model):
@@ -50,3 +51,17 @@ class StudentStatus(models.Model):
     updated = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.student.name
+
+
+class StudentFee(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.PROTECT)
+    fee_type = models.ForeignKey(FeeTypes , on_delete = models.PROTECT)
+    fee = models.IntegerField()
+    valid = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        if str(self.valid) == "True":
+            return "{}>{}".format(self.student.name,self.fee_type)
+        else:
+            return str(self.fee)

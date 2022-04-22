@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student , StudentStatus
+from .models import Student , StudentStatus , StudentFee
 
 class ManageStudentCreateForm(forms.ModelForm):
     class Meta:
@@ -26,7 +26,6 @@ class ManageStudentCreateForm(forms.ModelForm):
             'remarks',
         ]
 
-
 class ManageStudentStatusCreateForm(forms.ModelForm):
     class Meta:
         model = StudentStatus
@@ -36,4 +35,14 @@ class ManageStudentStatusCreateForm(forms.ModelForm):
             'current_section',
             'valid',
             'current_session',
+        ]
+
+class ManageStudentFeeCreateForm(forms.ModelForm):
+    class Meta:
+        model = StudentFee
+        fields = [
+            'student',
+            'fee',
+            'fee_type',
+            'valid',
         ]

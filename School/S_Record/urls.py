@@ -31,7 +31,35 @@ urlpatterns = [
     path('class-subject/create',views.ManageClassSubjectCreateView,name='class_subject_create'),
     path('class-subject/edit/<pk>',views.ManageClassSubjectCreateView,name='class_subject_edit'),
 
-    
+    # School Detail
+    path('detail/',views.ManageSchoolDetailListView , name = 'detail_list'),
+    path('detail/add/',views.ManageSchoolDetailCreateView , name = 'detail_create'),
+    path('detail/edit/<pk>/',views.ManageSchoolDetailCreateView , name = 'detail_edit'),
+    path('detail/change-status/<pk>/',views.ManageSchoolDetailChangeStatusView , name = 'detail_change_status'),
+
+    # School Images
+    path('album/images/',views.ManageSchoolAlbumImagesListView , name = 'album_images_list'),
+    path('album/images/add/',views.ManageSchoolAlbumImagesCreateView , name = 'album_images_create'),
+    path('album/images/edit/<pk>/',views.ManageSchoolAlbumImagesCreateView , name = 'album_images_edit'),
+    path('album/images/change-status/<pk>/',views.ManageSchoolAlbumImagesChangeStatusView , name = 'album_images_change_status'),
+
+    # School Videos
+    path('album/videos/',views.ManageSchoolAlbumVideosListView , name = 'album_videos_list'),
+    path('album/videos/add/',views.ManageSchoolAlbumVideosCreateView , name = 'album_videos_create'),
+    path('album/videos/edit/<pk>/',views.ManageSchoolAlbumVideosCreateView , name = 'album_videos_edit'),
+    path('album/videos/change-status/<pk>/',views.ManageSchoolAlbumVideosChangeStatusView , name = 'album_videos_change_status'),
+
+    # School Announcements
+    path('announcements/',views.ManageSchoolAnnouncementsListView , name = 'announcements_list'),
+    path('announcements/add/',views.ManageSchoolAnnouncementsCreateView , name = 'announcements_create'),
+    path('announcements/edit/<pk>/',views.ManageSchoolAnnouncementsCreateView , name = 'announcements_edit'),
+    path('announcements/change-status/<pk>/',views.ManageSchoolAnnouncementsChangeStatusView , name = 'announcements_change_status'),
+
+    # School Fee Structure
+    path('fee-structure/',views.ManageSchoolFeeStructureListView , name = 'fee_structure_list'),
+    path('fee-structure/add/',views.ManageSchoolFeeStructureCreateView , name = 'fee_structure_create'),
+    path('fee-structure/edit/<pk>/',views.ManageSchoolFeeStructureCreateView , name = 'fee_structure_edit'),
+    path('fee-structure/change-status/<pk>/',views.ManageSchoolFeeStructureChangeStatusView , name = 'fee_structure_change_status'),
     
 
 ]

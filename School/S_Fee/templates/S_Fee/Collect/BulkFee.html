@@ -1,0 +1,66 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Due Fee</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switchery.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switch.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/form_checkboxes_radios.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h6 class="card-title">Collect Fee</h6>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_student">Student:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="student" required="" id="id_student" value="{{ student }}" readonly="">
+                    </div>
+                </div>
+                    <div class="datatable-scroll-wrap">
+                        <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Student Name: activate to sort column descending" aria-sort="ascending">Fee</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Father's Name: activate to sort column descending" aria-sort="ascending">Year</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Class: activate to sort column descending" aria-sort="ascending">Month</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Section: activate to sort column descending" aria-sort="ascending">Due Date</th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in fee %}
+                                    <tr role="row" class="odd">
+                                        <td>{{ i.fee.fee_type }}</td>
+                                        <td>{{ i.year }}</td>
+                                        <td>{{ i.month }}</td>
+                                        <td>{{ i.due_date }}</td>
+                                        <td><input class="form-control" type="number" name="{{ i.pk }}" id="id_paid_amount" placeholder="{{ i.amount_to_pay }}" min="1" max="{{ fee.amount_to_pay }}" {% if i.paid_amount %}value="{{ i.paid_ammount }}"{% endif %}></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label" for="id_class">Receipt :</label>
+                        <div class="col-lg-9">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input-styled" name="receipt" id="id_voucher" data-fouc="">
+                            </div>
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Add Fee <i class="icon-paperplane ml-2"></i></button>
+                    </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

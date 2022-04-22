@@ -25,9 +25,6 @@ SHARED_APPS = (
     'App.Authentication',
     'School.S_School',
 
-    'django.contrib.contenttypes',
-
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +45,7 @@ TENANT_APPS = (
     'School.S_Teachers',
     'School.S_Students',
     'School.S_Homework',
+    'School.S_Fee',
     # Teacher
     'Teacher.T_Teachers',
     'Teacher.T_Students',
@@ -68,7 +66,7 @@ INSTALLED_APPS = [
     # Main
     'App.Main','App.Authentication',
     # School
-    'School.S_Record','School.S_School','School.S_Teachers','School.S_Students','School.S_Homework',
+    'School.S_Record','School.S_School','School.S_Teachers','School.S_Students','School.S_Homework','School.S_Fee',
     # Teacher
     'Teacher.T_Teachers','Teacher.T_Students','Teacher.T_Homework',
     # Student

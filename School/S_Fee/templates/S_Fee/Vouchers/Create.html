@@ -1,0 +1,107 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Due Fee</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switchery.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/styling/switch.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/form_checkboxes_radios.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h6 class="card-title">Select To Generate Vouchers</h6>
+        </div>
+
+        <div class="card-body">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item"><a href="#I_Student" class="nav-link rounded-top active" data-toggle="tab">Individual Student</a></li>
+                <li class="nav-item"><a href="#W_Class" class="nav-link rounded-top" data-toggle="tab">Whole Class</a></li>
+                <li class="nav-item"><a href="#S_Classes" class="nav-link rounded-top" data-toggle="tab">Selected Clases</a></li>
+                <li class="nav-item"><a href="#W_School" class="nav-link rounded-top" data-toggle="tab">Whole School</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="I_Student">
+                    <form method="POST" action="{% url 'student_fee:student_fee_voucher_create' %}">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label" for="id_name">Student Name :</label>
+                            <div class="col-lg-9">
+                                <select class="form-control" name="student" required="" id="id_student">
+                                    <option value="">----------------</option>
+                                    {% for i in students %}
+                                        <option value="{{ i.pk }}">{{ i.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        {% csrf_token %}
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="W_Class">
+                    <form method="POST" action="{% url 'student_fee:class_fee_voucher_create' %}">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label" for="id_class">Class :</label>
+                            <div class="col-lg-9">
+                                <select class="form-control" name="class" required="" id="id_class">
+                                    <option value="">----------------</option>
+                                    {% for i in classes %}
+                                        <option value="{{ i.pk }}">{{ i.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        {% csrf_token %}
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="W_School">
+                    <form method="POST" action="{% url 'student_fee:school_fee_voucher_create' %}">
+                        {% csrf_token %}
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="S_Classes">
+                    <form method="POST" action="{% url 'student_fee:selected_classes_fee_voucher_create' %}">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label" for="id_class">Classes :</label>
+                            <div class="col-lg-9">
+                                {% for i in classes %}
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        {{ i }}
+                                    </div>
+                                    <div class="col-lg-3">
+                                            <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input-styled" name="{{ i.pk }}" id="id_class" data-fouc="">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% csrf_token %}
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

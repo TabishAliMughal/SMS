@@ -83,7 +83,6 @@ def ManageTeacherClassCreateView(request,pk):
         return redirect('school_teacher:teacher_list')
     else:
         form = ManageTeacherClassCreateForm(instance = instance)
-        print(form)
         context = {
             'form' : form ,
         }

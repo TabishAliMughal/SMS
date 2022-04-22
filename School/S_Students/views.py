@@ -1,7 +1,7 @@
 from django.shortcuts import render , get_object_or_404 , redirect
-from School.S_Students.models import Student , StudentStatus
-from School.S_Record.models import ClassSection , Class , Session
-from School.S_Students.forms import ManageStudentCreateForm , ManageStudentStatusCreateForm
+from School.S_Students.models import Student, StudentFee , StudentStatus
+from School.S_Record.models import ClassSection , Class , Session , FeeTypes
+from School.S_Students.forms import ManageStudentCreateForm , ManageStudentStatusCreateForm , ManageStudentFeeCreateForm
 from django.contrib.auth.models import Group , User
 from App.Authentication.forms import UserCreationForm
 from App.Authentication.user_handeling import allowed_users
@@ -16,24 +16,53 @@ def ManageStudentCreateView(request,pk=None):
         instance = get_object_or_404(Student , pk = pk)
     else:
         instance = None
+    def change_fee(post):
+        for i in FeeTypes.objects.all():
+            print(request.POST)
+            try:
+                fee = get_object_or_404(StudentFee , fee_type = i , student = instance , fee = int(request.POST.get('fee{}'.format(i.pk))) , valid = True)
+            except:
+                try:
+                    fee = get_object_or_404(StudentFee , fee_type = i , student = instance , valid = True)
+                    fee.valid = False
+                    fee.save()
+                    StudentFee(student = instance , fee_type = i , fee = int(post.get('fee{}'.format(i.pk)) or '0') , valid = True).save()
+                except:
+                    StudentFee(student = instance , fee_type = i , fee = int(post.get('fee{}'.format(i.pk)) or '0') , valid = True).save()
+    def change_status(post=None):
+        try:
+            get_object_or_404(StudentStatus , student = instance , valid = True)
+        except:
+            StudentStatus(student = student ,current_class = get_object_or_404(Class, pk =int(post.get('class_of_admission'))) ,current_section = get_object_or_404(ClassSection , clas = get_object_or_404(Class, pk =int(post.get('class_of_admission'))) , serial = 1) ,current_session = get_object_or_404(Session , pk = post.get('session_of_admission')) ,valid = "True").save()
     if request.method == 'POST':
         student_form = ManageStudentCreateForm(request.POST,request.FILES,instance=instance)
         student = student_form.save()
-        if not instance:
-            status_form = ManageStudentStatusCreateForm({
-                'student' : student ,
-                'current_class' : request.POST.get('class_of_admission') ,
-                'current_section' : int("1") ,
-                'current_session' : request.POST.get('session_of_admission') ,
-                'valid' : "True" ,
-            })
-            status_form.save()
+        change_status(post=request.POST)
+        change_fee(post=request.POST)
         return redirect('school_record:gr_register')
     else:
         form = ManageStudentCreateForm(instance=instance)
         if pk:
             form.dob = str(instance.date_of_birth)
             form.doa = str(instance.date_of_admission)
+        fee = []
+        for i in FeeTypes.objects.all():
+            try:
+                sel_fee = get_object_or_404(StudentFee , fee_type = i , student = instance , valid = 'True').fee
+            except:
+                sel_fee = '0'
+            fee.append({'type':i,'value':sel_fee})
+        form.fee = fee
+        users = []
+        for i in User.objects.all():
+            for p in i.groups.values_list():
+                if str(p[1]) == str("School_Student"):
+                    try:
+                        get_object_or_404(Student , user = i)
+                    except:
+                        users.append(i)
+
+        form.user_to_add = users
         context = {
             'form' : form ,
         }
@@ -48,9 +77,11 @@ def ManageSchoolStudentsListView(request):
         for j in Student.objects.all().filter(active = "True").order_by('gr_number'):
             try:
                 status = get_object_or_404(StudentStatus , student = j , valid = "True" , current_class = k)
+                fee = StudentFee.objects.all().filter(student = j , valid = "True")
                 j.current_class = status.current_class
                 j.current_section = status.current_section
                 j.created = status.created
+                j.fee = fee
                 clas_students.append(j)
             except:
                 pass
@@ -166,11 +197,10 @@ def ManageSchoolStudentManageUserView(request,pk):
                 'message' : message ,
             }
             return render(request,'S_Student/User/ChangePassword.html',context)
-
-        else:
-            form = UserCreationForm(instance = user)
-            context = {
-                'student' : student ,
-                'form' : form ,
-            }
-            return render(request,'S_Student/User/ChangePassword.html',context)
+        # else:
+        #     form = UserCreationForm(instance = user)
+        #     context = {
+        #         'student' : student ,
+        #         'form' : form ,
+        #     }
+        #     return render(request,'S_Student/User/ChangePassword.html',context)

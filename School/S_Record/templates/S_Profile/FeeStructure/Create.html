@@ -1,0 +1,50 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block page_js %}
+	<script src="{% static './global_assets/js/demo_pages/form_multiselect.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/bootstrap_multiselect.js' %}"></script>
+{% endblock %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Add Class-Subjects</span>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Create Class-Subjects</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_clas">Class:</label>
+                    <div class="col-lg-9">
+                        <select class="form-control" name="clas" required="" id="id_clas">
+                            {% for i in form.clas %}
+                                {{ i }}
+                            {% endfor %}
+                          </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" for="id_clas">Class:</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="fee" maxlength="1000" required="" id="id_fee" value="{% if form.fee.value %}{{ form.fee.value }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group row" hidden>
+                    <label class="col-lg-3 col-form-label" for="id_valid">Valid:</label>
+                    <div class="col-lg-9">
+                        <div class="uniform-checker">
+                            <input type="checkbox" class="form-check-input-styled" name="valid" checked id="id_valid" data-fouc="">
+                        </div>
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Add Class-Fee <i class="icon-paperplane ml-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

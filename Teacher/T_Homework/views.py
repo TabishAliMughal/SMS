@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404, render , redirect
 from School.S_Homework.models import Homework, HomeworkImage, HomeworkVideo
 from Student.I_Homework.models import StudentHomeworkStatus
-from Teacher.T_Students.views import get_teacher, get_students
+from Teacher.T_Teachers.views import  get_teacher
+from Teacher.T_Students.views import get_students
 from App.Authentication.user_handeling import allowed_users
 from django.contrib.auth.decorators import login_required
 from School.S_Homework.forms import ManageHomeworkCreateForm , ManageHomeworkImageCreateForm , ManageHomeworkVideoCreateForm
-from School.S_Students.models import Student , StudentStatus
 
 
 @login_required(login_url='main:login')

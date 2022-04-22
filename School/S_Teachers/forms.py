@@ -1,5 +1,5 @@
 from django import forms
-from .models import Teacher , TeacherClass , TeacherSalary , TeacherSubject
+from .models import Teacher , TeacherClass , TeacherSalary , TeacherSubject , TeacherDetail , TeacherAlbumImages , TeacherAlbumVideos
 
 class ManageTeacherCreateForm(forms.ModelForm):
     class Meta:
@@ -49,5 +49,32 @@ class ManageTeacherSubjectCreateForm(forms.ModelForm):
         fields = [
             'teacher',
             'subjects',
+            'valid',
+        ]
+
+class ManageTeacherDetailCreateForm(forms.ModelForm):
+    class Meta:
+        model = TeacherDetail
+        fields = [
+            'teacher',
+            'detail',
+            'valid',
+        ]
+
+class ManageTeacherAlbumImagesCreateForm(forms.ModelForm):
+    class Meta:
+        model = TeacherAlbumImages
+        fields = [
+            'teacher',
+            'image',
+            'valid',
+        ]
+
+class ManageTeacherAlbumVideosCreateForm(forms.ModelForm):
+    class Meta:
+        model = TeacherAlbumVideos
+        fields = [
+            'teacher',
+            'url',
             'valid',
         ]

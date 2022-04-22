@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from School.S_School.models import School
-from School.S_Record.models import ClassSection, Class, ClassSubjects , Session, Subject
-from School.S_Record.forms import ManageClassSectionCreateForm, ManageClassCreateForm, ManageClassSubjectCreateForm , ManageSessionCreateForm, ManageSubjectCreateForm
+from School.S_Record.models import ClassSection, Class, ClassSubjects , Session, Subject , SchoolDetail , SchoolAlbumImages , SchoolAlbumVideos , SchoolAnnouncements , SchoolFeeStructure
+from School.S_Record.forms import ManageClassSectionCreateForm, ManageClassCreateForm, ManageClassSubjectCreateForm , ManageSessionCreateForm, ManageSubjectCreateForm , ManageSchoolDetailCreateForm , ManageSchoolAlbumImagesCreateForm , ManageSchoolAlbumVideosCreateForm , ManageSchoolAnnouncementsCreateForm , ManageSchoolFeeStructureCreateForm
 from School.S_Students.models import Student , StudentStatus
 from App.Authentication.user_handeling import allowed_users
 from django.contrib.auth.decorators import login_required
@@ -165,3 +165,193 @@ def ManageClassSubjectCreateView(request,pk=None):
             'form' : form ,
         }
         return render(request,"S_Record/ClassSubjects/Create.html",context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolDetailListView(request):
+    detail = SchoolDetail.objects.all().order_by('valid')
+    context = {
+        'detail' : detail ,
+    }
+    return render(request,'S_Profile/Detail/List.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolDetailCreateView(request,pk=None):
+    if pk:
+        instance = get_object_or_404(SchoolDetail , pk = pk)
+    else:
+        instance = None
+    if request.method == 'POST':
+        form = ManageSchoolDetailCreateForm(request.POST,instance = instance)
+        form.save()
+        return redirect('school_record:detail_list')
+    else:
+        form = ManageSchoolDetailCreateForm(instance = instance)
+        context = {
+            'form':form,
+        }
+        return render(request,'S_Profile/Detail/Create.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolDetailChangeStatusView(request,pk):
+    instance = get_object_or_404(SchoolDetail , pk = pk)
+    if str(instance.valid) == "False":
+        instance.valid = True
+    else:
+        instance.valid = False
+    instance.save()
+    return redirect('school_record:detail_list')
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAlbumImagesListView(request):
+    images = SchoolAlbumImages.objects.all().order_by('valid')
+    context = {
+        'images' : images ,
+    }
+    return render(request,'S_Profile/Album/Images/List.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAlbumImagesCreateView(request,pk=None):
+    if pk:
+        instance = get_object_or_404(SchoolAlbumImages , pk = pk)
+    else:
+        instance = None
+    if request.method == 'POST':
+        form = ManageSchoolAlbumImagesCreateForm(request.POST,request.FILES,instance = instance)
+        form.save()
+        return redirect('school_record:album_images_list')
+    else:
+        form = ManageSchoolAlbumImagesCreateForm(instance = instance)
+        context = {
+            'form':form,
+        }
+        return render(request,'S_Profile/Album/Images/Create.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAlbumImagesChangeStatusView(request,pk):
+    instance = get_object_or_404(SchoolAlbumImages , pk = pk)
+    if str(instance.valid) == "False":
+        instance.valid = True
+    else:
+        instance.valid = False
+    instance.save()
+    return redirect('school_record:album_images_list')
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAlbumVideosListView(request):
+    videos = SchoolAlbumVideos.objects.all().order_by('valid')
+    context = {
+        'videos' : videos ,
+    }
+    return render(request,'S_Profile/Album/Videos/List.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAlbumVideosCreateView(request,pk=None):
+    if pk:
+        instance = get_object_or_404(SchoolAlbumVideos , pk = pk)
+    else:
+        instance = None
+    if request.method == 'POST':
+        form = ManageSchoolAlbumVideosCreateForm(request.POST,instance = instance)
+        form.save()
+        return redirect('school_record:album_videos_list')
+    else:
+        form = ManageSchoolAlbumVideosCreateForm(instance = instance)
+        context = {
+            'form':form,
+        }
+        return render(request,'S_Profile/Album/Videos/Create.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAlbumVideosChangeStatusView(request,pk):
+    instance = get_object_or_404(SchoolAlbumVideos , pk = pk)
+    if str(instance.valid) == "False":
+        instance.valid = True
+    else:
+        instance.valid = False
+    instance.save()
+    return redirect('school_record:album_videos_list')
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAnnouncementsListView(request):
+    announcements = SchoolAnnouncements.objects.all().order_by('valid')
+    context = {
+        'announcements' : announcements ,
+    }
+    return render(request,'S_Profile/Announcements/List.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAnnouncementsCreateView(request,pk=None):
+    if pk:
+        instance = get_object_or_404(SchoolAnnouncements , pk = pk)
+    else:
+        instance = None
+    if request.method == 'POST':
+        form = ManageSchoolAnnouncementsCreateForm(request.POST,instance = instance)
+        form.save()
+        return redirect('school_record:announcements_list')
+    else:
+        form = ManageSchoolAnnouncementsCreateForm(instance = instance)
+        context = {
+            'form':form,
+        }
+        return render(request,'S_Profile/Announcements/Create.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolAnnouncementsChangeStatusView(request,pk):
+    instance = get_object_or_404(SchoolAnnouncements , pk = pk)
+    if str(instance.valid) == "False":
+        instance.valid = True
+    else:
+        instance.valid = False
+    instance.save()
+    return redirect('school_record:announcements_list')
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolFeeStructureListView(request):
+    fee = SchoolFeeStructure.objects.all().order_by('valid')
+    context = {
+        'fee' : fee ,
+    }
+    return render(request,'S_Profile/FeeStructure/List.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolFeeStructureCreateView(request,pk=None):
+    if pk:
+        instance = get_object_or_404(SchoolFeeStructure , pk = pk)
+    else:
+        instance = None
+    if request.method == 'POST':
+        form = ManageSchoolFeeStructureCreateForm(request.POST,instance = instance)
+        form.save()
+        return redirect('school_record:fee_structure_list')
+    else:
+        form = ManageSchoolFeeStructureCreateForm(instance = instance)
+        context = {
+            'form':form,
+        }
+        return render(request,'S_Profile/FeeStructure/Create.html',context)
+
+@login_required(login_url='main:login')
+@allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
+def ManageSchoolFeeStructureChangeStatusView(request,pk):
+    instance = get_object_or_404(SchoolFeeStructure , pk = pk)
+    if str(instance.valid) == "False":
+        instance.valid = True
+    else:
+        instance.valid = False
+    instance.save()
+    return redirect('school_record:fee_structure_list')

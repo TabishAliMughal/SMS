@@ -1,7 +1,7 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect , get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group , User
 from .forms import CreateUserForm
 from django.contrib import messages
 from School.S_School.models import Domain, School
@@ -13,7 +13,7 @@ def HandleUser(request):
 	request.session['group'] = groups
 	request.session.save()
 	try:
-		site = request.META['HTTP_HOST'].split(":")[0]
+		site = request.META['HTTP_HOST']
 		school = get_object_or_404(School , schema_name = site.split(".")[0])
 		request.session['school'] = {
 			'pk' : school.pk ,
@@ -30,24 +30,25 @@ def HandleUser(request):
 def loginPage(request):
 	path = '/'
 	if request.method == 'POST':
-		username = request.POST.get('username')
-		password =request.POST.get('password')
-		user = authenticate(request, username=username, password=password)
-		if user is not None:
-			if "." not in request.META['HTTP_HOST'][:-5]:
-				school = "public"
-			else:
-				school = request.META['HTTP_HOST'].split(".")[0]
+		try:
+			school = request.META['HTTP_HOST'].split(".")[0]
 			tenant = get_object_or_404(School , schema_name = school)
-			with tenant_context(tenant):
+		except:
+			tenant = get_object_or_404(School , schema_name = "public")
+		with tenant_context(tenant):
+			qr = request.POST.get('qr')
+			try:
+				user = get_object_or_404(User , password = qr)
+			except:
+				username = request.POST.get('username')
+				password =request.POST.get('password')
+				user = authenticate(request, username=username, password=password)
+			if user is not None:
 				login(request, user)
 				HandleUser(request)
 				return HttpResponseRedirect(path)
-		else:
-			context = {
-				'message' : "User Not Found",
-			}
-			return render(request ,'Main/Main.html',context)
+			else:
+				return redirect('main:main','rejected')
 	else:
 		return HttpResponseRedirect(path)
 

@@ -11,6 +11,7 @@ urlpatterns = [
     path('school/record/', include("School.S_Record.urls" , namespace="school_record")),
     path('school/student/', include("School.S_Students.urls" , namespace="school_student")),
     path('school/teacher/', include("School.S_Teachers.urls" , namespace="school_teacher")),
+    path('school/fee/', include("School.S_Fee.urls" , namespace="school_fee")),
     # Teacher
     path('teacher/', include("Teacher.T_Teachers.urls" , namespace="teacher")),
     path('teacher/student/', include("Teacher.T_Students.urls" , namespace="teacher_student")),
@@ -18,6 +19,8 @@ urlpatterns = [
     # Student
     path('student/', include("Student.I_Students.urls" , namespace="student")),
     path('student/homework/', include("Student.I_Homework.urls" , namespace="student_homework")),
+    # Fee
+    path('student/fee/', include("School.S_Fee.urls" , namespace="student_fee")),
 ]
 
 handler404 = "App.Main.views.PageNotFound"

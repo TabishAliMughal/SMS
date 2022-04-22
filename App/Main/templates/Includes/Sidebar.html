@@ -27,7 +27,18 @@
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
 						{% for i in request.session.group %}
 							{% if i == 'School_Owner' %}
-								<li class="nav-item"><a href="{% url 'school:school_profile' %}" class="nav-link"><i class="icon-home2"></i> School Profile</a></li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-home2"></i> <span> School Profile</span></a>
+									
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'school:school_profile' %}" class="nav-link">Profile</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:detail_list' %}" class="nav-link">Detail</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:album_images_list' %}" class="nav-link">Images</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:album_videos_list' %}" class="nav-link">Videos</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:announcements_list' %}" class="nav-link">Announcements</a></li>
+										<li class="nav-item"><a href="{% url 'school_record:fee_structure_list' %}" class="nav-link">Fee Structure</a></li>
+									</ul>
+								</li>
 								<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Data</div> <i class="icon-menu" title="Main"></i></li>
 								<li class="nav-item"><a href="{% url 'school_record:gr_register' %}" class="nav-link"><i class="icon-book3"></i> Gr Register</a></li>
 								<li class="nav-item nav-item-submenu">
@@ -56,8 +67,27 @@
 										<li class="nav-item"><a href="{% url 'school_teacher:teacher_list' %}" class="nav-link">All Teachers</a></li>
 									</ul>
 								</li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-users4"></i> <span>Fee</span></a>
+									
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'student_fee:due_fee_create' %}" class="nav-link">Add Fee</a></li>
+										<li class="nav-item"><a href="{% url 'student_fee:due_fee_list' %}" class="nav-link">Due Fee</a></li>
+										<li class="nav-item"><a href="{% url 'student_fee:fee_collect' %}" class="nav-link">Collect Fee</a></li>
+										<li class="nav-item"><a href="{% url 'student_fee:fee_vouchers' %}" class="nav-link">Generate Vouchers</a></li>
+									</ul>
+								</li>
 							{% elif i == 'School_Teacher' %}
-								<li class="nav-item"><a href="{% url 'teacher:teacher_profile' %}" class="nav-link"><i class="icon-home2"></i> My Profile</a></li>
+							<li class="nav-item nav-item-submenu">
+								<a href="javascript:" class="nav-link"><i class="icon-home2"></i> <span> Teacher Profile</span></a>
+								
+								<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+									<li class="nav-item"><a href="{% url 'teacher:teacher_profile' %}" class="nav-link">Profile</a></li>
+									<li class="nav-item"><a href="{% url 'teacher:detail_list' %}" class="nav-link">Detail</a></li>
+									<li class="nav-item"><a href="{% url 'teacher:album_images_list' %}" class="nav-link">Images</a></li>
+									<li class="nav-item"><a href="{% url 'teacher:album_videos_list' %}" class="nav-link">Videos</a></li>
+								</ul>
+							</li>
 								<li class="nav-item nav-item-submenu">
 									<a href="javascript:" class="nav-link"><i class="icon-users"></i> <span>Students</span></a>
 

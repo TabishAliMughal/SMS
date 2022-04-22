@@ -1,0 +1,131 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Due Fee</span>
+{% endblock %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/tables/datatables/datatables.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/tables/datatables/extensions/responsive.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/datatables_responsive.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_sweetalert.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/notifications/sweet_alert.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+    {% include "S_Fee/Pay.html" %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Due Fee</h5>
+            <div class="text-right">
+                <a href="{% url 'student_fee:due_fee_class' %}" class="btn btn-primary"><i class="icon-paragraph-justify2 mr-2"></i> Class Wise</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="datatable-scroll-wrap">
+                <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                    <thead>
+                        <tr role="row">
+                            <th hidden class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="G.R Number: activate to sort column descending" aria-sort="ascending">G.R Number</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="G.R Number: activate to sort column descending" aria-sort="ascending">Student Name</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Student Name: activate to sort column descending" aria-sort="ascending">Fee</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Type: activate to sort column descending" aria-sort="ascending">Type</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date Of Birth: activate to sort column descending" aria-sort="ascending">Month</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Class: activate to sort column descending" aria-sort="ascending">Class</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column descending" aria-sort="ascending">Due Date</th>
+                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in due_fee %}
+                            <tr role="row" class="odd">
+                                <td hidden>{{ i.student.gr_number }}</td>
+                                <td>{{ i.student }}</td>
+                                <td>{{ i.fee.fee }}{% if i.paid_amount %} - {{ i.paid_amount }}{% endif %}</td>
+                                <td>{{ i.fee.fee_type }}</td>
+                                <td>{{ i.month }}>{{ i.year }}</td>
+                                <td>{{ i.current_class }}</td>
+                                <td>{{ i.due_date }}</td>
+                                <td class="text-center" style="">
+                                    <div class="list-icons">
+                                        <div class="dropdown">
+                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                
+                                                <a href="{% url 'school_fee:student_due_fee_collect' i.pk %}" class="dropdown-item"><i class="icon-cash2"></i> Collect</a>
+                                                <!-- <a hidden id="id_pay1" data-toggle="modal" data-target="#fee_pay_modal" class="dropdown-item"><i class="icon-cash2"></i> Pay</a>
+                                                <a id="id_pay" onclick="displayDate('{{ i.student }}')" class="dropdown-item"><i class="icon-cash2"></i> Pay</a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% if message %}
+        {% if from == 'Student' %}
+            <script>
+                window.onload = function () {
+                    alertStudentMessage();
+                }
+            </script>
+        {% elif from == 'Class' or from == 'School' %}
+            <script>
+                window.onload = function () {
+                    alertClassMessage();
+                }
+            </script>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        function alertStudentMessage(){
+            var swalInit = swal.mixin({
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-light'
+            });
+            swalInit({
+                text: "{{ message }}",
+                type: "{{ type }}",
+            });
+        }
+    </script>
+    <script>
+        function alertClassMessage(){
+            var swalInit = swal.mixin({
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-light'
+            });
+            swalInit({
+                html:
+                    '{% if added %}'+
+                        '<h3>Added Students</h3>' +
+                        '{% for i in added %}{{ i }}<br>{% endfor %}' +
+                    '{% endif %}'+
+                    '{% if not_added %}'+
+                        '<h3>Not Added Students</h3>' +
+                        '{% for i in not_added %}{{ i }}<br>{% endfor %}'+
+                    '{% endif %}'
+            }).then(function(result) {
+                if(result.value) {
+                    window.location.href = "{% url 'school_fee:due_fee_list' %}";
+                }
+            })
+        }
+    </script>
+    <script>
+        function displayDate(abc) {            
+            document.getElementById('id_pay1').click();
+        }
+    </script>
+{% endblock %}

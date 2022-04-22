@@ -6,5 +6,6 @@ app_name = 'School'
 
 urlpatterns = [
     path('',views.ManageSchoolProfileView , name = 'school_profile'),
-    path('add/',views.ManageSchoolCreateView , name = 'create_school')
+    path('<rejected>',views.ManageSchoolProfileView , name = 'school_profile'),
+    path('add/',views.ManageSchoolCreateView , name = 'create_school'),
 ]

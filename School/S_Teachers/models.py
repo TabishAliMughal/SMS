@@ -63,5 +63,26 @@ class TeacherSubject(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+class TeacherDetail(models.Model):
+    teacher = models.ForeignKey(Teacher , on_delete=models.PROTECT)
+    detail = models.CharField(max_length=5000)
+    valid = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.detail
 
+class TeacherAlbumImages(models.Model):
+    teacher = models.ForeignKey(Teacher , on_delete=models.PROTECT)
+    image = models.FileField(upload_to="School/Album/")
+    valid = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return str(self.image)
 
+class TeacherAlbumVideos(models.Model):
+    teacher = models.ForeignKey(Teacher , on_delete=models.PROTECT)
+    url = models.URLField()
+    valid = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.url

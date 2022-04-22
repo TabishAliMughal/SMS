@@ -29,7 +29,7 @@
         <div class="card-body">
             <div class="tab-content">
                 {% for k in students %}
-                    <div class="tab-pane fade active show" id="class{{ k.class.pk }}">
+                    <div class="tab-pane fade" id="class{{ k.class.pk }}">
                         <div class="card">
                             <div class="card-header header-elements-inline">
                                 <h5 class="card-title">{{ k.class }}</h5>
@@ -41,10 +41,10 @@
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Student Name: activate to sort column descending" aria-sort="ascending">Student Name</th>
                                                 <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Father's Name: activate to sort column descending" aria-sort="ascending">Father's Name</th>
-                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Gender: activate to sort column descending" aria-sort="ascending">Class</th>
-                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Gender: activate to sort column descending" aria-sort="ascending">Section</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Class: activate to sort column descending" aria-sort="ascending">Class</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Section: activate to sort column descending" aria-sort="ascending">Section</th>
                                                 <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">Contact</th>
-                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">User</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="User: activate to sort column descending" aria-sort="ascending">User</th>
                                                 <th class="text-center sorting_disabled" rowspan="1" colspan="1" style="width: 100px;" aria-label="Actions">Actions</th>
                                             </tr>
                                         </thead>
@@ -73,7 +73,8 @@
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-right">
                                                                     <a href="{% url 'school_student:student_history' i.pk %}" class="dropdown-item"><i class="icon-history"></i> History</a>
-                                                                    <a href="{% url 'school_student:student_transfer' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Transfer</a>
+                                                                    <a href="{% url 'school_student:student_transfer' i.pk %}" class="dropdown-item"><i class="icon-transmission"></i> Transfer</a>
+                                                                    <a href="{% url 'school_fee:student_due_fee_collect_bulk' i.pk %}" class="dropdown-item"><i class="icon-cash2"></i> Collect Fee</a>
                                                                     {% if i.active %}
                                                                         <a href="{% url 'school_student:student_user_handle' i.pk %}" class="dropdown-item"><i class="icon-gear"></i> Manage User</a>
                                                                     {% endif %}

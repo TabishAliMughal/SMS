@@ -44,7 +44,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="id_current_section">Section:</label>
                     <div class="col-lg-9">
-                        <select class="form-control" name="current_section" style="display: ;">
+                        <select class="form-control" name="current_section" required="" style="display: ;">
                             <option value="">----------</option>
                             {% for i in sections %}
                                 {% for v in i.sections %}

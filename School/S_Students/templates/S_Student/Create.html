@@ -24,17 +24,25 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="id_user">User:</label>
                     <div class="col-lg-9">
-                        <select class="form-control" name="user" id="id_user">
-                            {% for i in form.user %}
-                                {{ i }}
-                            {% endfor %}
-                        </select>
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="icon-user"></i>
+                                </span>
+                            </span>
+                            <select class="form-control" name="user" id="id_user">
+                                <option>--------------</option>
+                                {% for i in form.user_to_add %}
+                                    <option value="{{ i.pk }}">{{ i.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label" for="id_gr_number">Gr number:</label>
                     <div class="col-lg-9">
-                        <input class="form-control" type="number" name="gr_number" required="" id="id_gr_number" value="{% if form.gr_number.value %}{{ form.gr_number.value }}{% endif %}">
+                        <input class="form-control" type="number" name="gr_number" required="" id="id_gr_number" {% if form.gr_number.value %}value="{{ form.gr_number.value }}" readonly {% endif %}>
                     </div>
                 </div>
                 
@@ -178,6 +186,14 @@
                         <input class="form-control" type="text" name="remarks" maxlength="500" id="id_remarks" value="{% if form.remarks.value %}{{ form.remarks.value }}{% endif %}">
                     </div>
                 </div>
+                {% for i in form.fee %}
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label" for="id_fee">{{ i.type }} Fee:</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="number" name="fee{{ i.type.pk }}" maxlength="500" id="id_fee" value="{{ i.value }}">
+                        </div>
+                    </div>
+                {% endfor %}
                 {% csrf_token %}
                 <div class="text-right">
                     <button type="submit" class="btn btn-primary">Add Student <i class="icon-paperplane ml-2"></i></button>

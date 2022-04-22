@@ -1,5 +1,5 @@
 from django import forms
-from .models import ClassSection , Class, ClassSubjects , Session, Subject
+from .models import ClassSection , Class, ClassSubjects , Session, Subject , SchoolDetail , SchoolAlbumImages , SchoolAlbumVideos , SchoolAnnouncements , SchoolFeeStructure
 
 class ManageClassCreateForm(forms.ModelForm):
     class Meta:
@@ -38,4 +38,45 @@ class ManageClassSubjectCreateForm(forms.ModelForm):
         fields = [
             'subject',
             'clas',
+        ]
+
+class ManageSchoolDetailCreateForm(forms.ModelForm):
+    class Meta:
+        model = SchoolDetail
+        fields = [
+            'detail',
+            'valid',
+        ]
+
+class ManageSchoolAlbumImagesCreateForm(forms.ModelForm):
+    class Meta:
+        model = SchoolAlbumImages
+        fields = [
+            'image',
+            'valid',
+        ]
+
+class ManageSchoolAlbumVideosCreateForm(forms.ModelForm):
+    class Meta:
+        model = SchoolAlbumVideos
+        fields = [
+            'url',
+            'valid',
+        ]
+
+class ManageSchoolAnnouncementsCreateForm(forms.ModelForm):
+    class Meta:
+        model = SchoolAnnouncements
+        fields = [
+            'announcement',
+            'valid',
+        ]
+
+class ManageSchoolFeeStructureCreateForm(forms.ModelForm):
+    class Meta:
+        model = SchoolFeeStructure
+        fields = [
+            'clas',
+            'fee',
+            'valid',
         ]
