@@ -123,9 +123,9 @@ WSGI_APPLICATION = 'MyApp.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': 'sms_multi',
-        'USER': 'comsoft',
-        'PASSWORD': 'Comsoft',
+        'NAME': 'comsoftsystems_sms',
+        'USER': 'comsoftsystems_tabish',
+        'PASSWORD': 'Tabish@abc123xyz',
         'HOST': '127.0.0.1' ,
         'PORT': '5432' ,
     }
@@ -167,30 +167,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-#AWS_ACCESS_KEY_ID = 'AKIAZBPKQPWOCBNQ5M55'
-#AWS_SECRET_ACCESS_KEY = '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'
-#AWS_STORAGE_BUCKET_NAME = 'school-management-system-storage'
-#AWS_S3_CUSTOM_DOMAIN = '%s.s3.ap-south-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-#AWS_S3_OBJECT_PARAMETERS = {
-#    'CacheControl': 'max-age=86400',
-#}
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-#AWS_LOCATION = 'static'
-
-#STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-
-#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-#DEFAULT_FILE_STORAGE = 'MyApp.storage_backends.MediaStorage'
-
 SESSION_EXPIRE_SECONDS = 1500  # 1500 seconds = 25 minutes
 
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 
-# SECURE_SSL_REDIRECT = True
