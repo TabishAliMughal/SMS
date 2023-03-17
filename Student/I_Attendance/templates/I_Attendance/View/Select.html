@@ -1,0 +1,129 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Student Attendance</span>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h6 class="card-title">View Attendance</h6>
+        </div>
+
+        <div class="card-body">
+            <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                <li class="nav-item"><a href="#highlighted-justified-tab1" class="nav-link active" data-toggle="tab">Day Wise</a></li>
+                <li class="nav-item"><a href="#highlighted-justified-tab2" class="nav-link" data-toggle="tab">Class Wise</a></li>
+                <li class="nav-item"><a href="#highlighted-justified-tab3" class="nav-link" data-toggle="tab">Calendar</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="highlighted-justified-tab1">
+                    <form action="{% url 'student_attendance:student_attendance_via_date' %}" method="post">
+                        <div class="form-group row text-center">
+                            <div class="col-lg-2">
+                            </div>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="date" name="date" required />
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="submit" class="btn btn-primary">Search<i class="icon-search4 ml-2"></i></button>
+                            </div>
+                            {% csrf_token %}
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="tab-pane fade" id="highlighted-justified-tab2">
+                    <div style="width: 50%;margin:auto;">
+                        {% for i in classes %}
+                            <div style="margin-top:20px;"><a class="btn btn-primary form-control" href="{% url 'student_attendance:student_attendance_via_class' i.pk %}">{{ i.name }}</a></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="highlighted-justified-tab3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="fullcalendar-basic fc fc-ltr fc-unthemed">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block page_js %}
+
+    <script src="{% static './global_assets/js/plugins/ui/fullcalendar/core/main.min.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/ui/fullcalendar/daygrid/main.min.js' %}"></script>
+    <script>
+        var FullCalendarBasic = function() {
+
+
+            //
+            // Setup module components
+            //
+
+            // Basic calendar
+            var _componentFullCalendarBasic = function() {
+                if (typeof FullCalendar == 'undefined') {
+                    console.warn('Warning - Fullcalendar files are not loaded.');
+                    return;
+                }
+                // Default events
+                var events = [
+                    {% for v in attendance %}
+                        {% for i in v.present %}
+                            {% if i.total > 0 %}
+                                {
+                                    title: 'Total Present = {{ i.total }}',
+                                    start: '{{ i.date }}',
+                                },
+                            {% endif %}
+                        {% endfor %}
+                        {% for i in v.absent %}
+                            {% if i.total > 0 %}
+                                {
+                                    title: 'Total Absent = {{ i.total }}',
+                                    start: '{{ i.date }}',
+                                    color: '#EF5350'
+                                },
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                ];
+                // Define element
+                var calendarBasicViewElement = document.querySelector('.fullcalendar-basic');
+
+                // Initialize
+                if(calendarBasicViewElement) {
+                    var calendarBasicViewInit = new FullCalendar.Calendar(calendarBasicViewElement, {
+                        plugins: [ 'dayGrid' ],
+                        header: {
+                            left: 'today',
+                            center: 'title',
+                            // right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                        },
+                        defaultDate: "{{ date }}",
+                        editable: true,
+                        events: events,
+                        eventLimit: true
+                    }).render();
+                }
+            };
+            return {
+                init: function() {
+                    _componentFullCalendarBasic();
+                }
+            }
+        }();
+        document.addEventListener('DOMContentLoaded', function() {
+            FullCalendarBasic.init();
+        });
+    </script>
+{% endblock %}

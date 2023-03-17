@@ -1,6 +1,5 @@
 from django.db import models
 from School.S_Homework.models import Homework
-
 from School.S_Students.models import Student
 
 

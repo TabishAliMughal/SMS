@@ -52,7 +52,8 @@
 								<li class="nav-item nav-item-submenu">
 									<a href="javascript:" class="nav-link"><i class="icon-database2"></i> <span>Basic Data</span></a>
 
-									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">										
+										<li class="nav-item"><a href="{% url 'student_fee:fee_type_list' %}" class="nav-link">Fee Types</a></li>
 										<li class="nav-item"><a href="{% url 'school_record:class_list' %}" class="nav-link">Class</a></li>
 										<li class="nav-item"><a href="{% url 'school_record:session_list' %}" class="nav-link">Session</a></li>
 										<li class="nav-item"><a href="{% url 'school_record:subject_list' %}" class="nav-link">Subject</a></li>
@@ -68,7 +69,17 @@
 									</ul>
 								</li>
 								<li class="nav-item nav-item-submenu">
-									<a href="javascript:" class="nav-link"><i class="icon-users4"></i> <span>Fee</span></a>
+									<a href="javascript:" class="nav-link"><i class="icon-checkmark-circle"></i> <span>Attendance</span></a>
+									
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'teacher_attendance:teacher_capture_attendance' %}" class="nav-link">Capture For Teachers</a></li>
+										<li class="nav-item"><a href="{% url 'teacher_attendance:teacher_attendance' %}" class="nav-link">Teachers Status</a></li>
+										<li class="nav-item"><a href="{% url 'student_attendance:student_capture_attendance' %}" class="nav-link">Capture For Students</a></li>
+										<li class="nav-item"><a href="{% url 'student_attendance:student_attendance' %}" class="nav-link">Students Status</a></li>
+									</ul>
+								</li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-cash3"></i> <span>Fee</span></a>
 									
 									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 										<li class="nav-item"><a href="{% url 'student_fee:due_fee_create' %}" class="nav-link">Add Fee</a></li>
@@ -78,16 +89,16 @@
 									</ul>
 								</li>
 							{% elif i == 'School_Teacher' %}
-							<li class="nav-item nav-item-submenu">
-								<a href="javascript:" class="nav-link"><i class="icon-home2"></i> <span> Teacher Profile</span></a>
-								
-								<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-									<li class="nav-item"><a href="{% url 'teacher:teacher_profile' %}" class="nav-link">Profile</a></li>
-									<li class="nav-item"><a href="{% url 'teacher:detail_list' %}" class="nav-link">Detail</a></li>
-									<li class="nav-item"><a href="{% url 'teacher:album_images_list' %}" class="nav-link">Images</a></li>
-									<li class="nav-item"><a href="{% url 'teacher:album_videos_list' %}" class="nav-link">Videos</a></li>
-								</ul>
-							</li>
+								<li class="nav-item nav-item-submenu">
+									<a href="javascript:" class="nav-link"><i class="icon-home2"></i> <span> Teacher Profile</span></a>
+									
+									<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+										<li class="nav-item"><a href="{% url 'teacher:teacher_profile' %}" class="nav-link">Profile</a></li>
+										<li class="nav-item"><a href="{% url 'teacher:detail_list' %}" class="nav-link">Detail</a></li>
+										<li class="nav-item"><a href="{% url 'teacher:album_images_list' %}" class="nav-link">Images</a></li>
+										<li class="nav-item"><a href="{% url 'teacher:album_videos_list' %}" class="nav-link">Videos</a></li>
+									</ul>
+								</li>
 								<li class="nav-item nav-item-submenu">
 									<a href="javascript:" class="nav-link"><i class="icon-users"></i> <span>Students</span></a>
 

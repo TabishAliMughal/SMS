@@ -20,12 +20,13 @@ def ManageTeacherClassHomeworklList(request):
         completed_students = []
         incompleted_students = []
         for j in get_students(teacher):
-            try:
-                i.status = get_object_or_404(StudentHomeworkStatus , student = j , homework = i)
-                completed_students.append(j)
-            except:
-                i.status = None
-                incompleted_students.append(j)
+            if str(i.clas.pk) == str(j.status.current_section.pk):
+                try:
+                    i.status = get_object_or_404(StudentHomeworkStatus , student = j , homework = i)
+                    completed_students.append(j)
+                except:
+                    i.status = None
+                    incompleted_students.append(j)
         i.status = {'completed':completed_students , 'incomplete':incompleted_students , 'completed_count':len(completed_students) , 'incomplete_count':len(incompleted_students)}
     context = {
         'teacher':teacher,

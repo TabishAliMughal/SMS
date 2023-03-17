@@ -5,3 +5,4 @@ django-import-export
 django-tenant-schemas
 django-storages
 boto3
+qrcode

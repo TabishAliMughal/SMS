@@ -5,6 +5,8 @@ from School.S_Students.models import Student
 from School.S_Teachers.models import Teacher
 from django.http import StreamingHttpResponse
 
+from App.Authentication.views import GenerateQR
+
 
 def ManageMainPageView(request,rejected=None):
     if request.user.is_authenticated and request.session.get('group'):

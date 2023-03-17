@@ -31,7 +31,7 @@
                                 </span>
                             </span>
                             <select class="form-control" name="user" id="id_user">
-                                <option>--------------</option>
+                                <option value="">--------------</option>
                                 {% for i in form.user_to_add %}
                                     <option value="{{ i.pk }}">{{ i.username }}</option>
                                 {% endfor %}

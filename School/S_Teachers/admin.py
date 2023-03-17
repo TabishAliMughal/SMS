@@ -21,6 +21,7 @@ class TeacherClassModel(ImportExportModelAdmin):
 admin.site.register(TeacherClass,TeacherClassModel)
 
 class TeacherSubjectModel(ImportExportModelAdmin):
+    list_display = ('teacher','get_subjects')
     search_fields = ['teacher','subjects']
 
 admin.site.register(TeacherSubject,TeacherSubjectModel)

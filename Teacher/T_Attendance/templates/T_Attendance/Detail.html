@@ -1,0 +1,73 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item">Teacher</span>
+    <span class="breadcrumb-item">Attendance</span>
+    <span class="breadcrumb-item active">Detail</span>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h6 class="card-title">Teachers Attendance</h6>
+        </div>
+
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group row">
+                    <div class="col-lg-10">
+                        <input class="form-control" type="date" name="date">
+                    </div>
+                    <div class="col-lg-2 text-right">
+                        <button type="submit" class="btn btn-primary">Search <i class="icon-search4 ml-2"></i></button>
+                    </div>
+                </div>
+                {% csrf_token %}
+            </form>
+            <br>
+            <ul class="nav nav-pills nav-justified" >
+                <li class="nav-item"><a href="#present-teachers" class="nav-link rounded-round active" data-toggle="tab">Present</a></li>
+                <li class="nav-item"><a href="#absent-teachers" class="nav-link rounded-round" data-toggle="tab">Absent</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="present-teachers">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in present %}
+                                <tr>
+                                    <td>{{ i }}</td>
+                                    <td>{{ i.capture_datetime.time }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="absent-teachers">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in absent %}
+                                <tr>
+                                    <td>{{ i }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

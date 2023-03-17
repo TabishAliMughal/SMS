@@ -16,9 +16,11 @@ urlpatterns = [
     path('teacher/', include("Teacher.T_Teachers.urls" , namespace="teacher")),
     path('teacher/student/', include("Teacher.T_Students.urls" , namespace="teacher_student")),
     path('teacher/homework/', include("Teacher.T_Homework.urls" , namespace="teacher_homework")),
+    path('teacher/attendance/', include("Teacher.T_Attendance.urls" , namespace="teacher_attendance")),
     # Student
     path('student/', include("Student.I_Students.urls" , namespace="student")),
     path('student/homework/', include("Student.I_Homework.urls" , namespace="student_homework")),
+    path('student/attendance/', include("Student.I_Attendance.urls" , namespace="student_attendance")),
     # Fee
     path('student/fee/', include("School.S_Fee.urls" , namespace="student_fee")),
 ]

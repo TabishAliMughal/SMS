@@ -17,7 +17,6 @@ def ManageStudentHomeworkList(request):
     for i in Homework.objects.all().filter(clas = get_object_or_404(ClassSection , pk = student.current_section.pk)).order_by('created'):
         i.images = HomeworkImage.objects.all().filter(homework = i)
         i.video = HomeworkVideo.objects.all().filter(homework = i)
-        # if get_object_or_404(StudentHomeworkStatus , student = student):
         try:
             i.status = get_object_or_404(StudentHomeworkStatus , student = student , homework = i)
         except:

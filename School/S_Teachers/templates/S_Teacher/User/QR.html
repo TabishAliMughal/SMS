@@ -1,0 +1,26 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/notifications/pnotify.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_pnotify.js' %}"></script>
+{% endblock %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item active">Teacher User QR</span>
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">QR For Teacher ({{ teacher }})</h5>
+        </div>
+        <div class="card-body">
+            <div style="width: min-content;margin: auto;">
+                {{ qr|safe }}
+            </div>
+            <div style="margin: auto;text-align: center;">
+                <h4>Be Carefull, There Is A Secret Inside <i class="far fa-grin-alt mr-3 fa-2x"></i></h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}

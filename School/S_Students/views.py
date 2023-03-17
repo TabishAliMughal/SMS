@@ -36,7 +36,10 @@ def ManageStudentCreateView(request,pk=None):
             StudentStatus(student = student ,current_class = get_object_or_404(Class, pk =int(post.get('class_of_admission'))) ,current_section = get_object_or_404(ClassSection , clas = get_object_or_404(Class, pk =int(post.get('class_of_admission'))) , serial = 1) ,current_session = get_object_or_404(Session , pk = post.get('session_of_admission')) ,valid = "True").save()
     if request.method == 'POST':
         student_form = ManageStudentCreateForm(request.POST,request.FILES,instance=instance)
+        # print(request.POST)
+        # print(student_form)
         student = student_form.save()
+        instance = student
         change_status(post=request.POST)
         change_fee(post=request.POST)
         return redirect('school_record:gr_register')

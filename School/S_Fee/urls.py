@@ -1,5 +1,5 @@
 from django.urls import path
-from School.S_Fee import collectfeeviews, createfeeviews, generatevouchers, views
+from School.S_Fee import collectfeeviews, createfeeviews, feetypeviews, generatevouchers, views
 
 app_name = 'Fee'
 
@@ -16,6 +16,8 @@ urlpatterns = [
     # Receipt
     path('due/collect/receipt/<fee>',collectfeeviews.ManageCreateReceiptView,name='fee_receipt'),
     # Create
+    path('type/create/',feetypeviews.ManageFeeTypesCreateView,name='fee_type_create'),
+    path('type/list/',feetypeviews.ManageFeeTypesListView,name='fee_type_list'),
     path('due/create/',createfeeviews.ManageCreateFeeView,name='due_fee_create'),
     path('due/create/student/',createfeeviews.ManageCreateStudentFeeView,name='student_due_fee_create'),
     path('due/create/class/',createfeeviews.ManageCreateClassFeeView,name='class_due_fee_create'),

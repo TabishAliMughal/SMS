@@ -240,9 +240,10 @@ def ManageSchoolTeacherManageUserView(request,pk):
 @allowed_users(allowed_roles=['School_Owner','School_Data_Handeler'])
 def ManageSchoolTeacherQRGenerateView(request,pk):
     teacher = get_object_or_404(Teacher , pk = pk)
+    # qr = GenerateQR("Admin1")
     qr = GenerateQR(teacher.user.username)
     context = {
         'teacher' : teacher ,
         'qr' : qr ,
     }
-    return render(request,'S_Student/User/QR.html',context)
+    return render(request,'S_Teacher/User/QR.html',context)

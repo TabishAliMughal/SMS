@@ -10,12 +10,13 @@ from django.contrib.auth.decorators import login_required
 def ManageDueFeeView(request,_from=None,type=None,message=None,added=None,not_added=None):
     due_fee = []
     fee = []
+
     for i in StudentFeeRecord.objects.all().filter(status = "Due"):
         fee.append(i)
     for i in StudentFeeRecord.objects.all().filter(status = "PartialyPaid"):
         fee.append(i)
     for i in fee:
-        i.current_class = StudentStatus.objects.get(student = i.student).current_class
+        i.current_class = StudentStatus.objects.get(student = i.student , valid = True).current_class
         due_fee.append(i)
     if str(_from) == 'Student':
         message = message

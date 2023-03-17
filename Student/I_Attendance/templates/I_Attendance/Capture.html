@@ -1,0 +1,149 @@
+{% extends "MainPage.html" %}
+{% load static %}
+{% block page_js %}
+    <script src="{% static './global_assets/js/plugins/notifications/pnotify.min.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_pnotify.js' %}"></script>
+    <script src="{% static './global_assets/js/demo_pages/extra_sweetalert.js' %}"></script>
+    <script src="{% static './global_assets/js/plugins/notifications/sweet_alert.min.js' %}"></script>
+{% endblock %}
+{% block navigation %}
+    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+    <span class="breadcrumb-item">School</span>
+    <span class="breadcrumb-item">Students</span>
+    <span class="breadcrumb-item">Attendance</span>
+    <span class="breadcrumb-item active">Capture</span>
+{% endblock %}
+{% block content %}
+    <script src="{% static './assets/js/qr.js' %}"></script>
+    
+    <div class="card">  
+        <div class="card-body">
+                <form class="form-horizontal" method="POST" id="id_login_form">
+                    {% csrf_token %}
+                    {% if status == 'error' %}
+                        <script>
+                            window.onload = function () {
+                                error();
+                            }
+                        </script>
+                    {% elif status == 'already' %}
+                        <script>
+                            window.onload = function () {
+                                already();
+                            }
+                        </script>
+                    {% elif status == 'ok' %}
+                        <script>
+                            window.onload = function () {
+                                ok();
+                            }
+                        </script>
+                    {% endif %}
+                    <div class="modal-body">
+                        <div class="collape" id="qr_scaner">
+                            <div class="form-group row" hidden>
+                                <label class="col-form-label col-sm-3">QR</label>
+                                <div class="col-sm-9">
+                                    <input type="text" placeholder="QR Code" class="form-control" name="qr" id="id_qr">
+                                </div>
+                            </div>
+                            <div style="width:80%;margin: auto;" id="reader"></div>
+                            <div style="text-align: center;width:80%;margin: auto;display: none;" id="id_spinner">
+                                <i style="font-size: 200px;" class="icon-spinner2 spinner"></i>
+                            </div>
+                        </div>
+                        <br>
+                        <a class="btn bg-primary form-control" id="user_id_button" onclick="show()">Login With User ID</a>
+                    </div>
+                    <div style="display:none ;" id="user_id" >
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">UserName</label>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Username" class="form-control" name="username" id="id_username" nofill autocomplete="off" autocomplete="false">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3">Password</label>
+                            <div class="col-sm-9">
+                                <input type="text" style="text-security:disc; -webkit-text-security:disc;" placeholder="Password" class="form-control" name="password" id="id_password" nofill autocomplete="off" autocomplete="false">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn bg-primary" id="id_login">Login</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+    <script>
+
+        function show (){
+            document.getElementById('user_id').style.display = 'block';
+            document.getElementById('user_id_button').style.display = 'none';
+        }
+        var script = document.createElement('script');
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('src', "{% static './assets/js/qr.js' %}");
+        document.head.appendChild(script);
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 500 }
+        );
+                
+        function onScanSuccess(decodedText, decodedResult) {
+            html5QrcodeScanner.clear();
+            document.getElementById('id_qr').value = decodedText ;
+            document.getElementById('id_spinner').style.display = 'block' ;
+            navigator.vibrate(200);
+            setTimeout(function () {
+                document.getElementById('id_login_form').submit() ;
+            }, 2000);
+        }
+
+        html5QrcodeScanner.render(onScanSuccess);
+
+    </script>
+    <script>
+        function error(){
+            var swalInit = swal.mixin({
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-light'
+            });
+            swalInit({
+                title: "{{ message }}",
+                type: 'error',
+                timer: '2500',
+                showCancelButton: false,
+                confirmButtonText: 'OK'
+            });
+        }
+        function already(){
+            var swalInit = swal.mixin({
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-light'
+            });
+            swalInit({
+                title: "{{ message }}",
+                type: 'info',
+                timer: '2500',
+                showCancelButton: false,
+                confirmButtonText: 'OK'
+            });
+        }
+        function ok(){
+            var swalInit = swal.mixin({
+                buttonsStyling: false,
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn btn-light'
+            });
+            swalInit({
+                title: "{{ message }}",
+                type: 'success',
+                timer: '2500',
+                showCancelButton: false,
+                confirmButtonText: 'OK'
+            });
+        }
+    </script>
+{% endblock %}

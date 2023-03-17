@@ -62,6 +62,11 @@ class TeacherSubject(models.Model):
     valid = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.teacher
+    def get_subjects(self):
+        print('abc')
+        return "\n".join([ str(i)+"," for i in self.subjects.all()])
 
 class TeacherDetail(models.Model):
     teacher = models.ForeignKey(Teacher , on_delete=models.PROTECT)

@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ovy6ph=k&ml+dqs!0ooz0orceqg-x58bnncg)4c7_581mgulx#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','*.*']
 
 
 # Application definition
@@ -50,9 +50,11 @@ TENANT_APPS = (
     'Teacher.T_Teachers',
     'Teacher.T_Students',
     'Teacher.T_Homework',
+    'Teacher.T_Attendance',
     # Student
     'Student.I_Students',
     'Student.I_Homework',
+    'Student.I_Attendance',
 )
 
 INSTALLED_APPS = [
@@ -68,9 +70,9 @@ INSTALLED_APPS = [
     # School
     'School.S_Record','School.S_School','School.S_Teachers','School.S_Students','School.S_Homework','School.S_Fee',
     # Teacher
-    'Teacher.T_Teachers','Teacher.T_Students','Teacher.T_Homework',
+    'Teacher.T_Teachers','Teacher.T_Students','Teacher.T_Homework','Teacher.T_Attendance',
     # Student
-    'Student.I_Students','Student.I_Homework',
+    'Student.I_Students','Student.I_Homework','Student.I_Attendance',
     # Extensions
     'import_export',
 ]
@@ -165,30 +167,30 @@ USE_L10N = True
 
 USE_TZ = True
 
-AWS_ACCESS_KEY_ID = 'AKIAZBPKQPWOCBNQ5M55'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'school-management-system-storage'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.ap-south-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+#AWS_ACCESS_KEY_ID = 'AKIAZBPKQPWOCBNQ5M55'
+#AWS_SECRET_ACCESS_KEY = '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'
+#AWS_STORAGE_BUCKET_NAME = 'school-management-system-storage'
+#AWS_S3_CUSTOM_DOMAIN = '%s.s3.ap-south-1.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+#AWS_S3_OBJECT_PARAMETERS = {
+#    'CacheControl': 'max-age=86400',
+#}
 
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-AWS_LOCATION = 'static'
+#AWS_LOCATION = 'static'
 
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+#STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-DEFAULT_FILE_STORAGE = 'MyApp.storage_backends.MediaStorage'
+#DEFAULT_FILE_STORAGE = 'MyApp.storage_backends.MediaStorage'
 
 SESSION_EXPIRE_SECONDS = 1500  # 1500 seconds = 25 minutes
 
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
