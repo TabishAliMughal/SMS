@@ -33,7 +33,7 @@
                 <tbody>
                     {% for i in schools %}
                         <tr role="row" class="odd">
-                            <td tabindex="0" class="sorting_1" style="">{{ i.full_name }}<a class="float-right" href="http://{% for v in i.domain %}{{ v }}{% endfor %}" ><i class="icon-arrow-up-right32"></i></a></td>
+                            <td tabindex="0" class="sorting_1" style="">{{ i.full_name }}<a class="float-right" href="http://{{ i.domain }}" ><i class="icon-arrow-up-right32"></i></a></td>
                             <td>{{ i.mobile }}</td>
                             <td>{{ i.principal_name }}</td>
                             <td>{{ i.students.count }} <a data-popup="popover" data-placement="top" title="" data-content="{% for v in i.students.students %}#{{ v }} {% endfor %}" data-original-title="Students List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>

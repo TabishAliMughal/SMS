@@ -14,9 +14,9 @@
         </div>
         <div class="card-body">
             <form method="POST">
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_remarks">Class:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <select class="form-control" name="clas" required id="id_clas">
                             {% for i in form.clas %}
                                 {{ i }}
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
+                <div class="text-end">
                     <button type="submit" class="btn btn-primary">Add Subject <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>

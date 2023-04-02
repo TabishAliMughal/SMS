@@ -26,7 +26,7 @@ def ManageMainPageView(request,rejected=None):
         pass
     schools = []
     for i in School.objects.all():
-        i.domain = [v for v in Domain.objects.all().filter(tenant = i)]
+        i.domain = Domain.objects.all().filter(tenant = i).first()
         teachers = []
         students = []
         if i.schema_name != 'public':
