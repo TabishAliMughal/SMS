@@ -126,7 +126,7 @@ DATABASES = {
         'NAME': 'comsoftsystems_sms',
         'USER': 'comsoftsystems_tabish',
         'PASSWORD': 'Tabish@abc123xyz',
-        'HOST': '127.0.0.1' ,
+        'HOST': 'comsoft-systems.com' ,
         'PORT': '5432' ,
     }
 }
