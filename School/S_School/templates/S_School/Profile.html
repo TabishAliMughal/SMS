@@ -38,11 +38,10 @@
             {% endfor %}<br><br><br>
         </div>
     </div> -->
-    <div class="d-flex align-items-start flex-column flex-md-row">
+    <div class="row">
 
         <!-- Left content -->
-        <div class="order-2 order-md-1 col-xl-9">
-
+        <div class="col-12 col-xl-8">
             {% for i in announcements %}
                 <div class="alert text-violet-800 alpha-violet border-0 alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
@@ -127,45 +126,47 @@
 
 
         <!-- Right sidebar component -->
-        <div class="sidebar-sticky w-100 w-md-auto order-1 order-md-2">
-            <div class="sidebar sidebar-light sidebar-component sidebar-component-right sidebar-expand-md">
-                <div class="sidebar-content">
-                    
-                    <!-- Navigation -->
-                    <div class="card">
-                        <div class="card-header bg-transparent header-elements-inline">
-                            <span class="text-uppercase font-size-sm font-weight-semibold">Navigation</span>
-                            <div class="header-elements">
-                                <div class="list-icons">
-                                    <a class="list-icons-item" data-action="collapse"></a>
+        <div class="d-none col-xl-4 d-xl-block">
+            <div class="sidebar-sticky">
+                <div class="sidebar sidebar-light sidebar-component sidebar-component-right sidebar-expand-md">
+                    <div class="sidebar-content">
+                        
+                        <!-- Navigation -->
+                        <div class="card">
+                            <div class="card-header bg-transparent header-elements-inline">
+                                <span class="text-uppercase font-size-sm font-weight-semibold">Navigation</span>
+                                <div class="header-elements">
+                                    <div class="list-icons">
+                                        <a class="list-icons-item" data-action="collapse"></a>
+                                    </div>
                                 </div>
                             </div>
+
+                            <ul class="nav nav-sidebar nav-scrollspy">
+                                {% if images or videos %}
+                                    <li class="nav-item-header">School Profile</li>
+                                    <li class="nav-item nav-item-submenu">
+                                        <a class="nav-link">Gallery</a>
+                                        <ul class="nav nav-group-sub">
+                                            <li class="nav-item"><a href="#scrollspy-gallery-images" class="nav-link">Images</a></li>
+                                            <li class="nav-item"><a href="#scrollspy-gallery-videos" class="nav-link">Videos</a></li>
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                                {% if detail or fee %}
+                                    <li class="nav-item nav-item-submenu">
+                                        <a class="nav-link">Detail</a>
+                                        <ul class="nav nav-group-sub">
+                                            <li class="nav-item"><a href="#scrollspy-school-detail" class="nav-link">School Detail</a></li>
+                                            <li class="nav-item"><a href="#scrollspy-fee-detail" class="nav-link">Fee Detail</a></li>
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                            </ul>
                         </div>
+                        <!-- /navigation -->
 
-                        <ul class="nav nav-sidebar nav-scrollspy">
-                            {% if images or videos %}
-                                <li class="nav-item-header">School Profile</li>
-                                <li class="nav-item nav-item-submenu">
-                                    <a class="nav-link">Gallery</a>
-                                    <ul class="nav nav-group-sub">
-                                        <li class="nav-item"><a href="#scrollspy-gallery-images" class="nav-link">Images</a></li>
-                                        <li class="nav-item"><a href="#scrollspy-gallery-videos" class="nav-link">Videos</a></li>
-                                    </ul>
-                                </li>
-                            {% endif %}
-                            {% if detail or fee %}
-                                <li class="nav-item nav-item-submenu">
-                                    <a class="nav-link">Detail</a>
-                                    <ul class="nav nav-group-sub">
-                                        <li class="nav-item"><a href="#scrollspy-school-detail" class="nav-link">School Detail</a></li>
-                                        <li class="nav-item"><a href="#scrollspy-fee-detail" class="nav-link">Fee Detail</a></li>
-                                    </ul>
-                                </li>
-                            {% endif %}
-                        </ul>
                     </div>
-                    <!-- /navigation -->
-
                 </div>
             </div>
         </div>
@@ -205,65 +206,67 @@
         }
     </script>
 <!-- Images -->
-    <script>
-        var imgslideIndex = 1;
-        showImageSlides(imgslideIndex);
-        function plusImageSlides(n) {
-            showImageSlides(imgslideIndex += n);
-        }
-        function currentImageSlide(n) {
-            showImageSlides(imgslideIndex = n);
-        }
-        function showImageSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("myImages");
-            var dots = document.getElementsByClassName("dotImages");
-            if(n > slides.length) {
-                imgslideIndex = 1
+    {% if images or videos %}
+        <script>
+            var imgslideIndex = 1;
+            showImageSlides(imgslideIndex);
+            function plusImageSlides(n) {
+                showImageSlides(imgslideIndex += n);
             }
-            if(n < 1) {
-                imgslideIndex = slides.length
+            function currentImageSlide(n) {
+                showImageSlides(imgslideIndex = n);
             }
-            for(i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+            function showImageSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("myImages");
+                var dots = document.getElementsByClassName("dotImages");
+                if(n > slides.length) {
+                    imgslideIndex = 1
+                }
+                if(n < 1) {
+                    imgslideIndex = slides.length
+                }
+                for(i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for(i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active1", "");
+                }
+                slides[imgslideIndex - 1].style.display = "block";
+                dots[imgslideIndex - 1].className += " active1";
             }
-            for(i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active1", "");
+        </script>
+    <!-- Videos -->
+        <script>
+            var vidslideIndex = 1;
+            showVideoSlides(vidslideIndex);
+            function plusVideoSlides(n) {
+                showVideoSlides(vidslideIndex += n);
             }
-            slides[imgslideIndex - 1].style.display = "block";
-            dots[imgslideIndex - 1].className += " active1";
-        }
-    </script>
-<!-- Videos -->
-    <script>
-        var vidslideIndex = 1;
-        showVideoSlides(vidslideIndex);
-        function plusVideoSlides(n) {
-            showVideoSlides(vidslideIndex += n);
-        }
-        function currentVideoSlide(n) {
-            showVideoSlides(vidslideIndex = n);
-        }
-        function showVideoSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("myVideos");
-            var dots = document.getElementsByClassName("dotVideos");
-            if(n > slides.length) {
-                vidslideIndex = 1
+            function currentVideoSlide(n) {
+                showVideoSlides(vidslideIndex = n);
             }
-            if(n < 1) {
-                vidslideIndex = slides.length
+            function showVideoSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("myVideos");
+                var dots = document.getElementsByClassName("dotVideos");
+                if(n > slides.length) {
+                    vidslideIndex = 1
+                }
+                if(n < 1) {
+                    vidslideIndex = slides.length
+                }
+                for(i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for(i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active1", "");
+                }
+                slides[vidslideIndex - 1].style.display = "block";
+                dots[vidslideIndex - 1].className += " active1";
             }
-            for(i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for(i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active1", "");
-            }
-            slides[vidslideIndex - 1].style.display = "block";
-            dots[vidslideIndex - 1].className += " active1";
-        }
-    </script>
+        </script>
+    {% endif %}
     <script>
         function getId(url) {
             const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;

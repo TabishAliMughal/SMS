@@ -28,9 +28,9 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="I_Student">
                     <form method="POST" action="{% url 'student_fee:student_fee_voucher_create' %}">
-                        <div class="form-group row">
+                        <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_name">Student Name :</label>
-                            <div class="col-lg-9">
+                            <div class="form-input" >
                                 <select class="form-control" name="student" required="" id="id_student">
                                     <option value="">----------------</option>
                                     {% for i in students %}
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="text-right">
+                        <div class="text-end">
                             <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>
@@ -48,9 +48,9 @@
 
                 <div class="tab-pane fade" id="W_Class">
                     <form method="POST" action="{% url 'student_fee:class_fee_voucher_create' %}">
-                        <div class="form-group row">
+                        <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_class">Class :</label>
-                            <div class="col-lg-9">
+                            <div class="form-input" >
                                 <select class="form-control" name="class" required="" id="id_class">
                                     <option value="">----------------</option>
                                     {% for i in classes %}
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="text-right">
+                        <div class="text-end">
                             <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>
@@ -69,7 +69,7 @@
                 <div class="tab-pane fade" id="W_School">
                     <form method="POST" action="{% url 'student_fee:school_fee_voucher_create' %}">
                         {% csrf_token %}
-                        <div class="text-right">
+                        <div class="text-end">
                             <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>
@@ -77,9 +77,9 @@
 
                 <div class="tab-pane fade" id="S_Classes">
                     <form method="POST" action="{% url 'student_fee:selected_classes_fee_voucher_create' %}">
-                        <div class="form-group row">
+                        <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_class">Classes :</label>
-                            <div class="col-lg-9">
+                            <div class="form-input" >
                                 {% for i in classes %}
                                 <div class="row">
                                     <div class="col-lg-3">
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="text-right">
+                        <div class="text-end">
                             <button type="submit" class="btn btn-primary">Generate <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>

@@ -18,9 +18,9 @@
         </div>
         <div class="card-body">
             <form method="POST">
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_student">Student:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <div class="input-group">
                             <input class="form-control" type="text" name="student" required="" id="id_student" value="{{ fee.student }}" readonly="">
                             <span class="input-group-append">
@@ -29,52 +29,52 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_fee">Fee:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="text" name="fee" required="" id="id_fee" value="{{ fee.fee.fee_type }}" readonly="">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_year">Year:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="number" name="year" required="" id="id_year" value="{{ fee.year }}" readonly="">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_month">Month:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="text" name="month" required="" id="id_month" value="{{ fee.month }}" readonly="">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_due_date">Due date:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="text" name="due_date" required="" id="id_due_date" value="{{ fee.due_date }}" readonly="">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_paid_amount">Paid Amount:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="number" name="paid_amount" required="" id="id_paid_amount" placeholder="{{ fee.amount_to_pay }}" max="{{ fee.amount_to_pay }}">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_paid_date">Paid date:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="date" name="paid_date" required="" id="id_paid_date" value="{{ date }}" readonly="">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_class">Receipt :</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <div class="form-check form-check-inline">
                             <input type="checkbox" class="form-check-input-styled" name="receipt" id="id_voucher" data-fouc="">
                         </div>
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
+                <div class="text-end">
                     <button type="submit" class="btn btn-primary">Add Fee <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>

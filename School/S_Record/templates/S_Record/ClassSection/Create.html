@@ -14,21 +14,21 @@
         </div>
         <div class="card-body">
             <form method="POST">
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_serial">Serial:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="number" name="serial" required id="id_serial" value="{% if form.serial.value %}{{ form.serial.value }}{% endif %}">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_name">Name:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="text" name="name" maxlength="50" required id="id_name" value="{% if form.name.value %}{{ form.name.value }}{% endif %}">
                     </div>
                 </div>
-                <div class="form-group row" hidden>
+                <div class="form-group mb-3" hidden>
                     <label class="col-lg-3 col-form-label" for="id_class">Class:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <select class="form-control" name="clas" required id="id_clas">
                             {% for i in form.clas %}
                                 {{ i }}
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
+                <div class="text-end">
                     <button type="submit" class="btn btn-primary">Add Section <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
