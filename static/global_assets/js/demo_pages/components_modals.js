@@ -197,14 +197,14 @@ var Modals = function () {
                     message: '<div class="row">  ' +
                         '<div class="col-md-12">' +
                             '<form action="">' +
-                                '<div class="form-group row">' +
+                                '<div class="form-group mb-3">' +
                                     '<label class="col-md-4 col-form-label">Name</label>' +
                                     '<div class="col-md-8">' +
                                         '<input id="name" name="name" type="text" placeholder="Your name" class="form-control">' +
                                         '<span class="form-text text-muted">Here goes your name</span>' +
                                     '</div>' +
                                 '</div>' +
-                                '<div class="form-group row">' +
+                                '<div class="form-group mb-3">' +
                                     '<label class="col-md-4 col-form-label">How awesome is this?</label>' +
                                     '<div class="col-md-8">' +
                                         '<div class="form-check">' +

@@ -18,9 +18,9 @@
         </div>
         <div class="card-body">
             <form method="POST">
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_student">Student:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="text" name="student" required="" id="id_student" value="{{ student }}" readonly="">
                     </div>
                 </div>
@@ -48,16 +48,16 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group mb-3">
                         <label class="col-lg-3 col-form-label" for="id_class">Receipt :</label>
-                        <div class="col-lg-9">
+                        <div class="form-input" >
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" class="form-check-input-styled" name="receipt" id="id_voucher" data-fouc="">
                             </div>
                         </div>
                     </div>
                     {% csrf_token %}
-                    <div class="text-right">
+                    <div class="text-end">
                         <button type="submit" class="btn btn-primary">Add Fee <i class="icon-paperplane ml-2"></i></button>
                     </div>
             </form>

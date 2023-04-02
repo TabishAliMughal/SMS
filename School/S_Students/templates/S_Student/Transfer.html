@@ -21,9 +21,9 @@
         </div>
         <div class="card-body">
             <form method="POST">
-                <div class="form-group row" hidden>
+                <div class="form-group mb-3" hidden>
                     <label class="col-lg-3 col-form-label" for="id_student">Student:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <select class="form-control" name="student" required="" id="id_student">
                             {% for i in form.student %}
                                 {{ i }}
@@ -31,9 +31,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_current_clas">Class:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <select class="form-control" name="current_class" required="" id="id_current_class">
                             {% for i in form.current_class %}
                                 {{ i }}
@@ -41,9 +41,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_current_section">Section:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <select class="form-control" name="current_section" required="" style="display: ;">
                             <option value="">----------</option>
                             {% for i in sections %}
@@ -54,15 +54,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row" hidden>
+                <div class="form-group mb-3" hidden>
                     <label class="col-lg-3 col-form-label" for="id_valid">Valid:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-check-input-styled" type="checkbox" name="valid" id="id_valid" {% if form.valid.value == True %}checked=""{% endif %} data-fouc="">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_current_session">Session:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <select class="form-control" name="current_session" required="" id="id_current_session">
                             {% for i in form.current_session %}
                                 {{ i }}
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
+                <div class="text-end">
                     <button type="submit" class="btn btn-primary">Transfer <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>

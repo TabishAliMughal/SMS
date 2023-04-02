@@ -14,20 +14,20 @@
         </div>
         <div class="card-body">
             <form method="POST">
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_serial">Serial:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="number" name="serial" required id="id_serial" value="{% if form.serial.value %}{{ form.id_serial.value }}{% endif %}">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_name">Name:</label>
-                    <div class="col-lg-9">
+                    <div class="form-input" >
                         <input class="form-control" type="text" name="name" maxlength="50" required id="id_name" value="{% if form.name.value %}{{ form.id_name.value }}{% endif %}">
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
+                <div class="text-end">
                     <button type="submit" class="btn btn-primary">Add Session <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>

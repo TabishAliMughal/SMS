@@ -97,7 +97,7 @@ ROOT_URLCONF = 'MyApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'App/Main/templates/Includes')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'App/Main/templates/Includes')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -173,7 +173,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-SESSION_EXPIRE_SECONDS = 1500  # 1500 seconds = 25 minutes
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
-SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+# STATIC_ROOT = "static/"
+
+# SESSION_EXPIRE_SECONDS = 1500  # 1500 seconds = 25 minutes
+
+# SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 

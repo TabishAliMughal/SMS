@@ -457,7 +457,7 @@ body {
   display: inline-block; }
 
 .sidebar-dark {
-  background-color: #263238;
+  background-color: black;
   color: #fff; }
   .sidebar-dark .sidebar-mobile-toggler {
     color: rgba(255, 255, 255, 0.9);
@@ -482,7 +482,7 @@ body {
 
 .sidebar-dark .nav-sidebar .nav-item > .nav-link.active,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar .nav-item > .nav-link.active {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: #242424;
   color: #fff; }
 
 .sidebar-dark .nav-sidebar .nav-item-open > .nav-link:not(.disabled),
@@ -496,7 +496,7 @@ body {
 .sidebar-dark .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar > .nav-item-open > .nav-link:not(.disabled),
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #26A69A;
+  background-color: #5a5a5a;
   color: #fff; }
 
 .sidebar-dark .nav-sidebar .nav-item-header,
@@ -1028,7 +1028,7 @@ body {
     .sidebar-dark .nav-tabs .nav-link.active {
       color: #fff; }
   .sidebar-dark .nav-tabs:not(.nav-tabs-bottom) .nav-link.active {
-    background-color: #263238;
+    background-color: black;
     border-color: rgba(255, 255, 255, 0.1); }
   .sidebar-dark .nav-tabs .nav-item.show .nav-link:not(.active) {
     color: #fff; }

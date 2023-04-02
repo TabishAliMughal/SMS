@@ -1,6 +1,8 @@
 from argparse import Namespace
 from django.contrib import admin
 from django.urls import path , include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include("App.Main.urls" , namespace="main")),
@@ -23,7 +25,7 @@ urlpatterns = [
     path('student/attendance/', include("Student.I_Attendance.urls" , namespace="student_attendance")),
     # Fee
     path('student/fee/', include("School.S_Fee.urls" , namespace="student_fee")),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = "App.Main.views.PageNotFound"
 handler500 = "App.Main.views.PageNotFound"
