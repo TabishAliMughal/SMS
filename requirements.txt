@@ -5,3 +5,4 @@ django-import-export
 django-tenant-schemas
 boto3
 qrcode
+pytz
