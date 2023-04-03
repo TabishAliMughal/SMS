@@ -1,4 +1,5 @@
-Django
+django
+psycopg2
 psycopg2-binary
 django-tenants
 django-import-export
