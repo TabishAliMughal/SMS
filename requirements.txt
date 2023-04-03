@@ -1,5 +1,4 @@
 django
-psycopg2
 psycopg2-binary
 django-tenants
 django-import-export
@@ -7,3 +6,4 @@ django-tenant-schemas
 boto3
 qrcode
 pytz
+psycopg2
