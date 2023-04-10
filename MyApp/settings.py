@@ -161,23 +161,24 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Karachi'
 
-# USE_I18N = True
+USE_I18N = True
 
-# USE_L10N = True
+USE_L10N = True
 
-# USE_TZ = True
+USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
-# STATIC_ROOT = "static/"
+STATIC_ROOT = "static/"
 
-# SESSION_EXPIRE_SECONDS = 1500  # 1500 seconds = 25 minutes
+SESSION_EXPIRE_SECONDS = 1500  # 1500 seconds = 25 minutes
 
-# SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 
+SECURE_SSL_REDIRECT = True
