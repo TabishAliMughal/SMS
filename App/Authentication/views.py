@@ -77,7 +77,6 @@ def loginPage(request):
 						i = int(i) - int(key)
 						decrypted += str(LETTERS[i])
 					return decrypted
-				print(qr)
 				user = get_object_or_404(User , username = decrypt(qr, '317'))
 			except:
 				username = request.POST.get('username')
