@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from School.S_School.models import School
 from .forms import ManageSchoolCreateForm , ManageDomainCreateForm
-from App.Authentication.forms import UserCreationForm
+from App.Authentication.forms import CreateUserForm
 from tenant_schemas.utils import tenant_context
 from django.contrib.auth.models import Group
 from App.Authentication.user_handeling import allowed_users
@@ -61,7 +61,7 @@ def ManageSchoolCreateView(request):
             })
             domain_form.save()
             with tenant_context(tenant):
-                user_form = UserCreationForm({
+                user_form = CreateUserForm({
                     'username' : "Admin1" ,
                     'email' : "" ,
                     'password1' : "abc123xyz" ,
@@ -77,7 +77,7 @@ def ManageSchoolCreateView(request):
                     Group.objects.create(name = "School_Owner")
                 group = Group.objects.get(name='School_Owner')
                 school_user.groups.add(group)
-                user_form = UserCreationForm({
+                user_form = CreateUserForm({
                     'username' : "ComsoftSystems" ,
                     'email' : "" ,
                     'password1' : "CSS@abc123xyz" ,
@@ -98,7 +98,7 @@ def ManageSchoolCreateView(request):
                 'form' : school_form,
                 'message' : "School Short Name Already Exist",
             }
-            return render(request , "School/Create.html",context)
+            return render(request , "S_School/Create.html",context)
         return redirect('main:main')
     else:
         school_form = ManageSchoolCreateForm()

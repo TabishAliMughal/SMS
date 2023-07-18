@@ -1,0 +1,87 @@
+[
+  {
+    "model": "S_School.School",
+    "pk": 1,
+    "fields": {
+      "schema_name": "public" ,
+      "short_name": "default" ,
+      "address": "default" ,
+      "full_name": "default" ,
+      "mobile": "03123456789" ,
+      "principal_name": "default" ,
+      "easypaisa": "03123456789" ,
+      "logo": "" ,
+      "active": "True"
+    }
+  },
+  {
+    "model": "S_School.Domain",
+    "pk": 1,
+    "fields": {
+      "domain": "localhost",
+      "tenant": 1,
+      "is_primary": true
+    }
+  },
+  {
+    "model": "S_School.Domain",
+    "pk": 2,
+    "fields": {
+      "domain": "127.0.0.1",
+      "tenant": 1,
+      "is_primary": false
+    }
+  },{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "Admin",
+      "permissions": []
+    }
+  },{
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "School_Owner",
+      "permissions": []
+    }
+  },{
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+      "name": "School_Teacher",
+      "permissions": []
+    }
+  },{
+    "model": "auth.group",
+    "pk": 4,
+    "fields": {
+      "name": "School_Student",
+      "permissions": []
+    }
+  },{
+    "model": "auth.group",
+    "pk": 5,
+    "fields": {
+      "name": "School_Data_Handeler",
+      "permissions": []
+    }
+  },{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "Admin1",
+      "password": "pbkdf2_sha256$216000$vqaQyAiOSQq3$c7VfDCRzGiTO6V8LA5UI4la/CpxaNtwbI9AFlzL8GT4=",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true
+    }
+  },{
+    "model": "auth.user_groups",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "group_id": 1
+    }
+  }
+]

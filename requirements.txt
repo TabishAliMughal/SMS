@@ -1,7 +1,8 @@
-Django
+django==3.1.1
 psycopg2-binary
 django-tenants
 django-import-export
 django-tenant-schemas
 boto3
 qrcode
+pytz
