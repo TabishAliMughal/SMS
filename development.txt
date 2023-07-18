@@ -1,5 +1,7 @@
 Migrations = python manage.py makemigrations Authentication Main S_Fee S_Homework S_Record S_School S_Students S_Teachers I_Attendance I_Homework I_Students T_Attendance T_Homework T_Students T_Teachers
 
+Port Forward = netsh interface portproxy add v4tov4 listenaddress=localhost listenport=80 connectaddress=127.0.0.1 connectport=8000
+
 
 Database Config
     Add "<DB Path>\bin\" And "<DB Path>\lib\" to path
