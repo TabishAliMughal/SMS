@@ -7,6 +7,7 @@ from django.contrib.auth.models import Group , User
 from App.Authentication.forms import UserCreationForm
 from App.Authentication.user_handeling import allowed_users
 from django.contrib.auth.decorators import login_required
+from School.S_School.views import AddUserToGroup
 
 
 @login_required(login_url='main:login')
@@ -149,7 +150,7 @@ def ManageSchoolStudentManageUserView(request,pk):
                     student.user=user
                     student.password = request.POST.get('password1')
                     student.save()
-                    user.groups.add(group)
+                    AddUserToGroup(user.pk,group.id)
                 except:
                     form = UserCreationForm()
                     if student.name.replace(" ","").lower() not in [i.username for i in User.objects.all()]:
