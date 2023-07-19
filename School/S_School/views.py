@@ -5,9 +5,14 @@ from App.Authentication.forms import CreateUserForm
 from tenant_schemas.utils import tenant_context
 from django.contrib.auth.models import Group
 from App.Authentication.user_handeling import allowed_users
+from django.db import connection
 from django.contrib.auth.decorators import login_required
 from School.S_Record.models import SchoolDetail , SchoolAlbumImages , SchoolAlbumVideos , SchoolAnnouncements , SchoolFeeStructure
 
+def AddUserToGroup(user,group):
+    with connection.cursor() as cursor:
+        cursor.execute("INSERT INTO auth_user_groups (user_id , group_id) VALUES ( {} , {} )".format(user , group))
+    return
 
 def ManageSchoolProfileView(request,rejected=None):
     site = request.META['HTTP_HOST']
@@ -76,7 +81,7 @@ def ManageSchoolCreateView(request):
                 except:
                     Group.objects.create(name = "School_Owner")
                 group = Group.objects.get(name='School_Owner')
-                school_user.groups.add(group)
+                AddUserToGroup(school_user.pk,group.id)
                 user_form = CreateUserForm({
                     'username' : "ComsoftSystems" ,
                     'email' : "" ,
@@ -92,7 +97,7 @@ def ManageSchoolCreateView(request):
                 except:
                     Group.objects.create(name = "School_Owner")
                 group = Group.objects.get(name='School_Owner')
-                super_user.groups.add(group)
+                AddUserToGroup(super_user.pk,group.id)
         else:
             context = {
                 'form' : school_form,

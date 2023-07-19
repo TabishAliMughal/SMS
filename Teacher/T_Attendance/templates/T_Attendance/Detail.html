@@ -15,13 +15,9 @@
 
         <div class="card-body">
             <form method="POST">
-                <div class="form-group mb-3">
-                    <div class="col-lg-10">
-                        <input class="form-control" type="date" name="date">
-                    </div>
-                    <div class="col-lg-2 text-end">
-                        <button type="submit" class="btn btn-primary">Search <i class="icon-search4 ml-2"></i></button>
-                    </div>
+                <div class="input-group mb-3">
+                    <input class="form-control" type="date" name="date">
+                    <button type="submit" class="btn btn-primary">Search <i class="icon-search4 ml-2"></i></button>
                 </div>
                 {% csrf_token %}
             </form>
