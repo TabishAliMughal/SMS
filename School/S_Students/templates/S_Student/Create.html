@@ -28,7 +28,7 @@
                             <span class="input-group-text">
                                 <i class="icon-user"></i>
                             </span>
-                            <select class="form-select" name="user" id="id_user">
+                            <select class="from-control" name="user" id="id_user">
                                 <option value="">--------------</option>
                                 {% for i in form.user_to_add %}
                                     <option value="{{ i.pk }}">{{ i.username }}</option>
@@ -87,7 +87,7 @@
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_class_of_admission">Class of admission:</label>
                     <div class="form-input">
-                        <select class="form-select" name="class_of_admission" required="" id="id_class_of_admission">
+                        <select class="from-control" name="class_of_admission" required="" id="id_class_of_admission">
                             {% for i in form.class_of_admission %}
                                 {{ i }}
                             {% endfor %}
@@ -98,7 +98,7 @@
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_session_of_admission">Session of admission:</label>
                     <div class="form-input">
-                        <select class="form-select" name="session_of_admission" required="" id="id_session_of_admission">
+                        <select class="from-control" name="session_of_admission" required="" id="id_session_of_admission">
                             {% for i in form.session_of_admission %}
                                 {{ i }}
                             {% endfor %}
@@ -116,7 +116,7 @@
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_last_school">Last school:</label>
                     <div class="form-input">
-                        <select class="form-select" name="last_school" id="id_last_school">
+                        <select class="from-control" name="last_school" id="id_last_school">
                             {% for i in form.last_school %}
                                 {{ i }}
                             {% endfor %}
@@ -127,7 +127,7 @@
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_religion">Religion:</label>
                     <div class="form-input">
-                        <select class="form-select" name="religion" required="" id="id_religion">
+                        <select class="from-control" name="religion" required="" id="id_religion">
                             {% for i in form.religion %}
                                 {{ i }}
                             {% endfor %}
@@ -138,7 +138,7 @@
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_gender">Gender:</label>
                     <div class="form-input">
-                        <select class="form-select" name="gender" required="" id="id_gender">
+                        <select class="from-control" name="gender" required="" id="id_gender">
                             {% for i in form.gender %}
                                 {{ i }}
                             {% endfor %}
