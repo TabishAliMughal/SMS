@@ -1,16 +1,18 @@
 {% load static %}
 <script src="{% static './assets/js/qr.js' %}"></script>
-<div id="login_modal" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div id="login_modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">User Login</h5>
-                <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
-            <form action="{% url 'auth:login' %}" class="form-horizontal" method="POST" id="id_login_form">
-                {% csrf_token %}
-                <div class="modal-body">
+            <div class="modal-body">
+                <form action="{% url 'auth:login' %}" class="form-horizontal" method="POST" id="id_login_form">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label class="form-label">UserName</label>
                         <div class="form-input">
@@ -25,7 +27,7 @@
                         </div> 
                     </div>
                     <br>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" onclick="script()" href="#qr_scaner" aria-expanded="false">
+                    <a class="btn btn-primary" data-toggle="collapse" onclick="script()" href="#qr_scaner" aria-expanded="false">
                         Scan QR
                     </a>
                     <div class="collapse" id="qr_scaner">
@@ -41,11 +43,11 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn bg-primary" id="id_login">Login</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
