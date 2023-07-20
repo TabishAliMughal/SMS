@@ -25,7 +25,7 @@ urlpatterns = [
     path('student/attendance/', include("Student.I_Attendance.urls" , namespace="student_attendance")),
     # Fee
     path('student/fee/', include("School.S_Fee.urls" , namespace="student_fee")),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
 handler404 = "App.Main.views.PageNotFound"
 handler500 = "App.Main.views.PageNotFound"
