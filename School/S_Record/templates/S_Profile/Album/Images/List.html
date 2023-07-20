@@ -22,38 +22,36 @@
                 <a href="{% url 'school_record:album_images_create' %}" class="btn btn-primary"><i class="icon-add mr-2"></i> New Image</a>
             </div>
             <br>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in images %}
                         <tr>
-                            <th>Image</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <td><a href="{{ i.image.url }}"><i class="icon-arrow-up-right32"></i></a></td>
+                            <td>{% if i.valid == True %}<span class="badge badge-success">Active</span>{% else %}<span class="badge badge-danger">InActive</span>{% endif %}</td>
+                            <td class="text-center">
+                                <div class="list-icons">
+                                    <div class="dropdown">
+                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                            <i class="icon-menu9"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{% url 'school_record:album_images_edit' i.pk %}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                            <a href="{% url 'school_record:album_images_change_status' i.pk %}" class="dropdown-item"><i class="icon-alignment-unalign"></i> {% if i.valid == True %}Hide{% else %}Show{% endif %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for i in images %}
-                            <tr>
-                                <td><a href="{{ i.image.url }}"><i class="icon-arrow-up-right32"></i></a></td>
-                                <td>{% if i.valid == True %}<span class="badge badge-success">Active</span>{% else %}<span class="badge badge-danger">InActive</span>{% endif %}</td>
-                                <td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="{% url 'school_record:album_images_edit' i.pk %}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-												<a href="{% url 'school_record:album_images_change_status' i.pk %}" class="dropdown-item"><i class="icon-alignment-unalign"></i> {% if i.valid == True %}Hide{% else %}Show{% endif %}</a>
-											</div>
-										</div>
-									</div>
-								</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

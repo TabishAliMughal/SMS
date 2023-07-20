@@ -1056,5 +1056,5 @@ var SweetAlert = function () {
 // ------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-    // SweetAlert.initComponents();
+    SweetAlert.initComponents();
 });

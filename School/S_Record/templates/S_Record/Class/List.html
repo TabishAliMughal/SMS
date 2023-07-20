@@ -21,41 +21,39 @@
                 <a href="{% url 'school_record:class_create' %}" class="btn btn-primary"><i class="icon-add mr-2"></i> New Class</a>
             </div>
             <br>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Sections</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in class %}
                         <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Sections</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for i in class %}
-                            <tr>
-                                <td>{{ i.serial }}</td>
-                                <td>{{ i.name }}</td>
-                                <td><a href="{% url 'school_record:class_section_list' i.pk %}">{{ i.sections }}</a></td>
-                                <td class="text-center">
-									<div class="list-icons">
-										<div class="dropdown">
-											<a href="#" class="list-icons-item" data-toggle="dropdown">
-												<i class="icon-menu9"></i>
-											</a>
+                            <td>{{ i.serial }}</td>
+                            <td>{{ i.name }}</td>
+                            <td><a href="{% url 'school_record:class_section_list' i.pk %}">{{ i.sections }}</a></td>
+                            <td class="text-center">
+                                <div class="list-icons">
+                                    <div class="dropdown">
+                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                            <i class="icon-menu9"></i>
+                                        </a>
 
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="{% url 'school_record:class_edit' i.pk %}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-												<a href="{% url 'school_record:class_section_create' i.pk %}" class="dropdown-item"><i class="icon-add"></i> Add Section</a>
-											</div>
-										</div>
-									</div>
-								</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="{% url 'school_record:class_edit' i.pk %}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                            <a href="{% url 'school_record:class_section_create' i.pk %}" class="dropdown-item"><i class="icon-add"></i> Add Section</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

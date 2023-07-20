@@ -1,10 +1,10 @@
 from django.shortcuts import get_object_or_404, render , redirect
 from tenant_schemas.utils import tenant_context
 from School.S_School.models import School , Domain
+from django.contrib.auth.models import Group , User
 from School.S_Students.models import Student
 from School.S_Teachers.models import Teacher
 from django.http import StreamingHttpResponse
-
 from App.Authentication.views import GenerateQR
 
 
