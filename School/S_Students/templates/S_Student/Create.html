@@ -43,21 +43,21 @@
                         <input class="form-control" type="number" name="gr_number" required="" id="id_gr_number" {% if form.gr_number.value %}value="{{ form.gr_number.value }}" readonly {% endif %}>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_name">Name:</label>
                     <div class="form-input">
                         <input class="form-control" type="text" name="name" maxlength="50" required="" id="id_name" value="{% if form.name.value %}{{ form.name.value }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_father_name">Father name:</label>
                     <div class="form-input">
                         <input class="form-control" type="text" name="father_name" maxlength="50" required="" id="id_father_name" value="{% if form.father_name.value %}{{ form.father_name.value }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_address">Address:</label>
                     <div class="form-input">
@@ -76,14 +76,14 @@
                         <input class="form-control" type="number" name="mobile1" min="-9223372036854775808" max="9223372036854775807" required="" id="id_mobile1" value="{% if form.mobile1.value %}{{ form.mobile1.value }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_mobile2">Mobile2:</label>
                     <div class="form-input">
                         <input class="form-control" type="number" name="mobile2" min="-9223372036854775808" max="9223372036854775807" id="id_mobile2" value="{% if form.mobile2.value %}{{ form.mobile2.value }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_class_of_admission">Class of admission:</label>
                     <div class="form-input">
@@ -94,7 +94,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_session_of_admission">Session of admission:</label>
                     <div class="form-input">
@@ -105,14 +105,14 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_date_of_admission">Date of admission:</label>
                     <div class="form-input">
                         <input class="form-control" type="date" name="date_of_admission" required="" id="id_date_of_admission" value="{% if form.date_of_admission.value %}{{ form.doa }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_last_school">Last school:</label>
                     <div class="form-input">
@@ -123,7 +123,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_religion">Religion:</label>
                     <div class="form-input">
@@ -134,7 +134,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_gender">Gender:</label>
                     <div class="form-input">
@@ -145,14 +145,14 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_date_of_birth">Date of birth:</label>
                     <div class="form-input">
                         <input class="form-control" type="date" name="date_of_birth" required="" id="id_date_of_birth" value="{% if form.date_of_birth.value %}{{ form.dob }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_active">Active:</label>
                     <div class="form-input">
@@ -161,21 +161,21 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_left_date">Left date:</label>
                     <div class="form-input">
                         <input class="form-control" type="date" name="left_date" id="id_left_date" value="{% if form.left_date.value %}{{ form.left_date.value }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_reason_of_left">Reason of left:</label>
                     <div class="form-input">
                         <input class="form-control" type="text" name="reason_of_left" maxlength="500" id="id_reason_of_left" value="{% if form.reason_of_left.value %}{{ form.reason_of_left.value }}{% endif %}">
                     </div>
                 </div>
-                
+
                 <div class="form-group mb-3">
                     <label class="form-label" for="id_remarks">Remarks:</label>
                     <div class="form-input">
@@ -191,7 +191,7 @@
                     </div>
                 {% endfor %}
                 {% csrf_token %}
-                <div class="text-end">
+                <div class="text-right">
                     <button type="submit" class="btn btn-primary">Add Student <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
