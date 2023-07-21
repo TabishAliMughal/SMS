@@ -18,8 +18,8 @@
     <div class="card">
         <div class="card-header header-elements-inline">
             <h5 class="card-title">Due Fee</h5>
-            <div class="text-right">
-                <a href="{% url 'student_fee:due_fee_class' %}" class="btn btn-primary"><i class="icon-paragraph-justify2 mr-2"></i> Class Wise</a>
+            <div class="text-end">
+                <a href="{% url 'student_fee:due_fee_class' %}" class="btn btn-theme"><i class="icon-paragraph-justify2 mr-2"></i> Class Wise</a>
             </div>
         </div>
         <div class="card-body">
@@ -50,13 +50,13 @@
                                 <td class="text-center" style="">
                                     <div class="list-icons">
                                         <div class="dropdown">
-                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                            <a href="#" class="list-icons-item" data-bs-toggle="dropdown">
                                                 <i class="icon-menu9"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
 
                                                 <a href="{% url 'school_fee:student_due_fee_collect' i.pk %}" class="dropdown-item"><i class="icon-cash2"></i> Collect</a>
-                                                <!-- <a hidden id="id_pay1" data-toggle="modal" data-target="#fee_pay_modal" class="dropdown-item"><i class="icon-cash2"></i> Pay</a>
+                                                <!-- <a hidden id="id_pay1" data-bs-toggle="modal" data-bs-target="#fee_pay_modal" class="dropdown-item"><i class="icon-cash2"></i> Pay</a>
                                                 <a id="id_pay" onclick="displayDate('{{ i.student }}')" class="dropdown-item"><i class="icon-cash2"></i> Pay</a> -->
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
         function alertStudentMessage(){
             var swalInit = swal.mixin({
                 buttonsStyling: false,
-                confirmButtonClass: 'btn btn-primary',
+                confirmButtonClass: 'btn btn-theme',
                 cancelButtonClass: 'btn btn-light'
             });
             swalInit({
@@ -103,7 +103,7 @@
         function alertClassMessage(){
             var swalInit = swal.mixin({
                 buttonsStyling: false,
-                confirmButtonClass: 'btn btn-primary',
+                confirmButtonClass: 'btn btn-theme',
                 cancelButtonClass: 'btn btn-light'
             });
             swalInit({

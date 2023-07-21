@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Search <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-theme">Search <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
         </div>
@@ -42,7 +42,7 @@
         function alertNotFoundMessage(){
             var swalInit = swal.mixin({
                 buttonsStyling: false,
-                confirmButtonClass: 'btn btn-primary',
+                confirmButtonClass: 'btn btn-theme',
                 cancelButtonClass: 'btn btn-light'
             });
             swalInit({

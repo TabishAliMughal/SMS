@@ -17,11 +17,11 @@
             <h5 class="card-title">Class Sections For "{{ class }}"</h5>
         </div>
         <div class="card-body">
-            <div class="text-right">
-                <a href="{% url 'school_record:class_section_create' class.pk %}" class="btn btn-primary"><i class="icon-add mr-2"></i> New Section</a>
+            <div class="text-end">
+                <a href="{% url 'school_record:class_section_create' class.pk %}" class="btn btn-theme"><i class="icon-add mr-2"></i> New Section</a>
             </div>
             <br>
-            <table class="table table-bordered table-striped">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -37,7 +37,7 @@
                             <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
-                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                        <a href="#" class="list-icons-item" data-bs-toggle="dropdown">
                                             <i class="icon-menu9"></i>
                                         </a>
 

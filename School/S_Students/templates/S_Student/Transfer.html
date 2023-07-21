@@ -24,7 +24,7 @@
                 <div class="form-group mb-3" hidden>
                     <label class="col-lg-3 col-form-label" for="id_student">Student:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="student" required="" id="id_student">
+                        <select class="form-select" name="student" required="" id="id_student">
                             {% for i in form.student %}
                                 {{ i }}
                             {% endfor %}
@@ -34,7 +34,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_current_clas">Class:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="current_class" required="" id="id_current_class">
+                        <select class="form-select" name="current_class" required="" id="id_current_class">
                             {% for i in form.current_class %}
                                 {{ i }}
                             {% endfor %}
@@ -44,7 +44,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_current_section">Section:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="current_section" required="" style="display: ;">
+                        <select class="form-select" name="current_section" required="" style="display: ;">
                             <option value="">----------</option>
                             {% for i in sections %}
                                 {% for v in i.sections %}
@@ -57,13 +57,13 @@
                 <div class="form-group mb-3" hidden>
                     <label class="col-lg-3 col-form-label" for="id_valid">Valid:</label>
                     <div class="form-input" >
-                        <input class="form-check-input-styled" type="checkbox" name="valid" id="id_valid" {% if form.valid.value == True %}checked=""{% endif %} data-fouc="">
+                        <input class="form-check-input-styled" type="checkbox" name="valid" id="id_valid" {% if form.valid.value == True %}checked=""{% endif %} data-bs-fouc="">
                     </div>
                 </div>
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_current_session">Session:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="current_session" required="" id="id_current_session">
+                        <select class="form-select" name="current_session" required="" id="id_current_session">
                             {% for i in form.current_session %}
                                 {{ i }}
                             {% endfor %}
@@ -71,8 +71,8 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Transfer <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-theme">Transfer <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
         </div>

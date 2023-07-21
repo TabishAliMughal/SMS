@@ -25,7 +25,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_class">Class:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="clas" required="" id="id_clas">
+                        <select class="form-select" name="clas" required="" id="id_clas">
                             {% for i in homework_form.clas %}
                                 {{ i }}
                             {% endfor %}
@@ -35,7 +35,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_subject">Subject:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="subject" required="" id="id_subject">
+                        <select class="form-select" name="subject" required="" id="id_subject">
                             {% for i in homework_form.subject %}
                                 {{ i }}
                             {% endfor %}
@@ -58,7 +58,7 @@
                     <h3>
                         Images
                         <div class="float-right">
-                            <a class="btn btn-primary" href="javascript:" onClick="addImage()">Add Another Image</a>
+                            <a class="btn btn-theme" href="javascript:" onClick="addImage()">Add Another Image</a>
                         </div>
                     </h3>
                 </div>
@@ -67,7 +67,7 @@
                         <label class="col-lg-3 col-form-label" for="id_image">Image:</label>
                         <div class="form-input" >
                             <div class="uniform-uploader">
-                                <input class="form-input-styled" type="file" name="image" id="id_image" data-fouc="">
+                                <input class="form-input-styled" type="file" name="image" id="id_image" data-bs-fouc="">
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                     <h3>
                         Videos
                         <div class="float-right">
-                            <a class="btn btn-primary" href="javascript:" onClick="addVideo()">Add Another Video</a>
+                            <a class="btn btn-theme" href="javascript:" onClick="addVideo()">Add Another Video</a>
                         </div>
                     </h3>
                 </div>
@@ -103,8 +103,8 @@
                 </div>
                 <br>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Add Homework <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-theme">Add Homework <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
         </div>
@@ -117,7 +117,7 @@
             // const clone = node.cloneNode(true);
             // alert('abc')
             // document.getElementById("id_images").appendChild(clone);
-            document.getElementById('id_images').insertAdjacentHTML('beforeend','<div class="form-group mb-3"><label class="col-lg-3 col-form-label" for="id_image">Image:</label><div class="form-input" ><div class="uniform-uploader"><div class="uniform-uploader" id="uniform-id_image"><input class="form-input-styled" type="file" name="image" id="id_image" data-fouc=""><span class="filename" style="user-select: none;">No file selected</span><span class="action btn bg-pink-400" style="user-select: none;">Choose File</span></div></div></div></div><div class="form-group mb-3"><label class="col-lg-3 col-form-label" for="id_image">Text:</label><div class="form-input" ><input class="form-control" type="text" name="img_text" maxlength="300" id="id_text"></div></div>');
+            document.getElementById('id_images').insertAdjacentHTML('beforeend','<div class="form-group mb-3"><label class="col-lg-3 col-form-label" for="id_image">Image:</label><div class="form-input" ><div class="uniform-uploader"><div class="uniform-uploader" id="uniform-id_image"><input class="form-input-styled" type="file" name="image" id="id_image" data-bs-fouc=""><span class="filename" style="user-select: none;">No file selected</span><span class="action btn bg-pink-400" style="user-select: none;">Choose File</span></div></div></div></div><div class="form-group mb-3"><label class="col-lg-3 col-form-label" for="id_image">Text:</label><div class="form-input" ><input class="form-control" type="text" name="img_text" maxlength="300" id="id_text"></div></div>');
         }
         function reload (){
             // $.getScript("{% static './global_assets/js/plugins/forms/selects/select2.min.js' %}");

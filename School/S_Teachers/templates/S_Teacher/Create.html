@@ -22,7 +22,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_user">User:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="user" id="id_user">
+                        <select class="form-select" name="user" id="id_user">
                             {% for i in form.user %}
                                 {{ i }}
                             {% endfor %}
@@ -54,7 +54,7 @@
                     <label class="col-lg-3 col-form-label">Picture:</label>
                     <div class="form-input" >
                         <div class="uniform-uploader">
-                            <input type="file" class="form-input-styled" name="picture" id="id_picture" data-fouc="">
+                            <input type="file" class="form-input-styled" name="picture" id="id_picture" data-bs-fouc="">
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_last_school">Last school:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="last_school" id="id_last_school">
+                        <select class="form-select" name="last_school" id="id_last_school">
                             {% for i in form.last_school %}
                                 {{ i }}
                             {% endfor %}
@@ -107,7 +107,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_religion">Religion:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="religion" required="" id="id_religion">
+                        <select class="form-select" name="religion" required="" id="id_religion">
                             {% for i in form.religion %}
                                 {{ i }}
                             {% endfor %}
@@ -118,7 +118,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_gender">Gender:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="gender" required="" id="id_gender">
+                        <select class="form-select" name="gender" required="" id="id_gender">
                             {% for i in form.gender %}
                                 {{ i }}
                             {% endfor %}
@@ -137,7 +137,7 @@
                     <label class="col-lg-3 col-form-label" for="id_active">Active:</label>
                     <div class="form-input" >
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input-styled" name="active" id="id_active" {% if form.active.value == True %}checked=""{% endif %} data-fouc="">
+                            <input type="checkbox" class="form-check-input-styled" name="active" id="id_active" {% if form.active.value == True %}checked=""{% endif %} data-bs-fouc="">
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_remarks">Class:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="clas" required id="id_clas">
+                        <select class="form-select" name="clas" required id="id_clas">
                             {% for i in class_form.clas %}
                                 {{ i }}
                             {% endfor %}
@@ -192,8 +192,8 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Add Teacher <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-themeAdd Teacher <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
         </div>

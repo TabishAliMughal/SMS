@@ -19,10 +19,10 @@
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-justified">
-                <li class="nav-item"><a href="#I_Student" class="nav-link rounded-top active" data-toggle="tab">Individual Student</a></li>
-                <li class="nav-item"><a href="#W_Class" class="nav-link rounded-top" data-toggle="tab">Whole Class</a></li>
-                <li class="nav-item"><a href="#S_Classes" class="nav-link rounded-top" data-toggle="tab">Selected Clases</a></li>
-                <li class="nav-item"><a href="#W_School" class="nav-link rounded-top" data-toggle="tab">Whole School</a></li>
+                <li class="nav-item"><a href="#I_Student" class="nav-link rounded-top active" data-bs-toggle="tab">Individual Student</a></li>
+                <li class="nav-item"><a href="#W_Class" class="nav-link rounded-top" data-bs-toggle="tab">Whole Class</a></li>
+                <li class="nav-item"><a href="#S_Classes" class="nav-link rounded-top" data-bs-toggle="tab">Selected Clases</a></li>
+                <li class="nav-item"><a href="#W_School" class="nav-link rounded-top" data-bs-toggle="tab">Whole School</a></li>
             </ul>
 
             <div class="tab-content">
@@ -31,7 +31,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_name">Student Name :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="student" required="" id="id_student">
+                                <select class="form-select" name="student" required="" id="id_student">
                                     <option value="">----------------</option>
                                     {% for i in students %}
                                         <option value="{{ i.pk }}">{{ i.name }}</option>
@@ -42,7 +42,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_type">Fee Type :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="fee_type" required="" id="id_fee_type">
+                                <select class="form-select" name="fee_type" required="" id="id_fee_type">
                                     <option value="">----------------</option>
                                     {% for i in fee_types %}
                                         <option value="{{ i.pk }}">{{ i.name }}</option>
@@ -53,7 +53,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_year">Year :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="year" required="" id="id_fee_year">
+                                <select class="form-select" name="year" required="" id="id_fee_year">
                                     <option value="">----------------</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -72,7 +72,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_month">Fee Month :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="month" required="" id="id_month">
+                                <select class="form-select" name="month" required="" id="id_month">
                                     <option value="" selected="">---------</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
@@ -96,8 +96,8 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Add Fee <i class="icon-paperplane ml-2"></i></button>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-theme">Add Fee <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>
                 </div>
@@ -107,7 +107,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_class">Class :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="class" required="" id="id_class">
+                                <select class="form-select" name="class" required="" id="id_class">
                                     <option value="">----------------</option>
                                     {% for i in classes %}
                                         <option value="{{ i.pk }}">{{ i.name }}</option>
@@ -118,7 +118,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_year">Year :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="year" required="" id="id_fee_year">
+                                <select class="form-select" name="year" required="" id="id_fee_year">
                                     <option value="">----------------</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -137,7 +137,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_type">Fee Type :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="fee_type" required="" id="id_fee_type">
+                                <select class="form-select" name="fee_type" required="" id="id_fee_type">
                                     <option value="">----------------</option>
                                     {% for i in fee_types %}
                                         <option value="{{ i.pk }}">{{ i.name }}</option>
@@ -148,7 +148,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_month">Fee Month :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="month" required="" id="id_month">
+                                <select class="form-select" name="month" required="" id="id_month">
                                     <option value="" selected="">---------</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
@@ -172,8 +172,8 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Add Fee <i class="icon-paperplane ml-2"></i></button>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-theme">Add Fee <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>
                 </div>
@@ -183,7 +183,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_type">Fee Type :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="fee_type" required="" id="id_fee_type">
+                                <select class="form-select" name="fee_type" required="" id="id_fee_type">
                                     <option value="">----------------</option>
                                     {% for i in fee_types %}
                                         <option value="{{ i.pk }}">{{ i.name }}</option>
@@ -194,7 +194,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_year">Year :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="year" required="" id="id_fee_year">
+                                <select class="form-select" name="year" required="" id="id_fee_year">
                                     <option value="">----------------</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -213,7 +213,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_month">Fee Month :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="month" required="" id="id_month">
+                                <select class="form-select" name="month" required="" id="id_month">
                                     <option value="" selected="">---------</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
@@ -237,8 +237,8 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Add Fee <i class="icon-paperplane ml-2"></i></button>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-theme">Add Fee <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>
                 </div>
@@ -255,7 +255,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                             <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input-styled" name="{{ i.pk }}" id="id_class" data-fouc="">
+                                            <input type="checkbox" class="form-check-input-styled" name="{{ i.pk }}" id="id_class" data-bs-fouc="">
                                         </div>
                                     </div>
                                     <br>
@@ -266,7 +266,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_year">Year :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="year" required="" id="id_fee_year">
+                                <select class="form-select" name="year" required="" id="id_fee_year">
                                     <option value="">----------------</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
@@ -285,7 +285,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_fee_type">Fee Type :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="fee_type" required="" id="id_fee_type">
+                                <select class="form-select" name="fee_type" required="" id="id_fee_type">
                                     <option value="">----------------</option>
                                     {% for i in fee_types %}
                                         <option value="{{ i.pk }}">{{ i.name }}</option>
@@ -296,7 +296,7 @@
                         <div class="form-group mb-3">
                             <label class="col-lg-3 col-form-label" for="id_month">Fee Month :</label>
                             <div class="form-input" >
-                                <select class="form-control" name="month" required="" id="id_month">
+                                <select class="form-select" name="month" required="" id="id_month">
                                     <option value="" selected="">---------</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
@@ -320,8 +320,8 @@
                             </div>
                         </div>
                         {% csrf_token %}
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Add Fee <i class="icon-paperplane ml-2"></i></button>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-theme">Add Fee <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </form>
                 </div>

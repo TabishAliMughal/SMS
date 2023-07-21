@@ -45,7 +45,7 @@
                             {{ msg | safe }}
                         {% else %}
                             Add your credentials
-                        {% endif %} 
+                        {% endif %}
                     </span>
 
                     <br />
@@ -53,18 +53,18 @@
 
                     <form role="form" method="POST" action="{% url 'Authentication:Login_Page' %}">
 
-                        {% csrf_token %}                   
+                        {% csrf_token %}
 
                         <div class="input-group mb-3">
                             <input type="text" name="username" placeholder="Username" class="form-control" required id="id_username">
                         </div>
-                        
+
                         <div class="input-group mb-4">
                             <input type="password" name="password" placeholder="Password" class="form-control" required id="id_password">
                         </div>
                         <input readonly type='hidden' value="{{ request.path }}" name="path" />
-                        
-                        <button type="submit" name="login" class="btn btn-primary shadow-2 mb-4">Login</button>
+
+                        <button type="submit" name="login" class="btn btn-theme shadow-2 mb-4">Login</button>
 
                     </form>
                     <a role="button" class="sign-in" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Sign in with Facebook</a>

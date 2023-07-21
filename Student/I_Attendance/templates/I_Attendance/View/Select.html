@@ -14,9 +14,9 @@
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
-                <li class="nav-item"><a href="#highlighted-justified-tab1" class="nav-link active" data-toggle="tab">Day Wise</a></li>
-                <li class="nav-item"><a href="#highlighted-justified-tab2" class="nav-link" data-toggle="tab">Class Wise</a></li>
-                <li class="nav-item"><a href="#highlighted-justified-tab3" class="nav-link" data-toggle="tab">Calendar</a></li>
+                <li class="nav-item"><a href="#highlighted-justified-tab1" class="nav-link active" data-bs-toggle="tab">Day Wise</a></li>
+                <li class="nav-item"><a href="#highlighted-justified-tab2" class="nav-link" data-bs-toggle="tab">Class Wise</a></li>
+                <li class="nav-item"><a href="#highlighted-justified-tab3" class="nav-link" data-bs-toggle="tab">Calendar</a></li>
             </ul>
 
             <div class="tab-content">
@@ -29,17 +29,17 @@
                                 <input class="form-control" type="date" name="date" required />
                             </div>
                             <div class="col-lg-2">
-                                <button type="submit" class="btn btn-primary">Search<i class="icon-search4 ml-2"></i></button>
+                                <button type="submit" class="btn btn-theme">Search<i class="icon-search4 ml-2"></i></button>
                             </div>
                             {% csrf_token %}
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="tab-pane fade" id="highlighted-justified-tab2">
                     <div style="width: 50%;margin:auto;">
                         {% for i in classes %}
-                            <div style="margin-top:20px;"><a class="btn btn-primary form-control" href="{% url 'student_attendance:student_attendance_via_class' i.pk %}">{{ i.name }}</a></div>
+                            <div style="margin-top:20px;"><a class="btn btn-theme form-control" href="{% url 'student_attendance:student_attendance_via_class' i.pk %}">{{ i.name }}</a></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="fullcalendar-basic fc fc-ltr fc-unthemed">
-                                
+
                             </div>
                         </div>
                     </div>

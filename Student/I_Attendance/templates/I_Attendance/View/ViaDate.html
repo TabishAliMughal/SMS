@@ -14,18 +14,18 @@
         </div>
         <div class="card-body">
             {% for i in attendance %}
-                
+
                 <div class="card-group-control card-group-control-right" id="accordion-control-right">
                     <div class="card">
                         <div class="card-header">
                             <h6 class="card-title">
-                                <a data-toggle="collapse" class="text-default collapsed" href="#class{{ i.class.pk }}" aria-expanded="false">
+                                <a data-bs-toggle="collapse" class="text-default collapsed" href="#class{{ i.class.pk }}" aria-expanded="false">
                                     {{ i.class }}<div class="text-righ">Total {{ i.total }}</div>
                                 </a>
                             </h6>
                         </div>
 
-                        <div id="class{{ i.class.pk }}" class="collapse" data-parent="#accordion-control-right">
+                        <div id="class{{ i.class.pk }}" class="collapse" data-bs-parent="#accordion-control-right">
                             <div class="card-body">
                                 {% for v in i.students %}
                                     {{ v }},

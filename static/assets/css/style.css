@@ -1,0 +1,132 @@
+.bg-body-theme{
+    background-color: #070d19;
+}
+.breadcrumb-item{
+    text-decoration: none;
+}
+.breadcrumb-item:not(.active){
+    color: #6571ff;
+}
+.card{
+    border-color: #172340;
+    background-color: #0c1427;
+}
+.btn-theme{
+    background-color: #6571ff;
+    color: #fff;
+}
+.table{
+    border-color: #172340;
+}
+.table thead th {
+    border-bottom: 1px solid #172340 !important;
+    color: #7987a1;
+}
+.table tbody td {
+    border-bottom: 1px solid #172340 !important;
+    color: #d0d6e1;
+}
+.footer{
+    position: absolute;
+    width: -webkit-fill-available;
+    bottom: 0;
+}
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #9d9d9e;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #0b1326;
+}
+.form-control,
+.form-control:focus{
+    color: #9d9d9e;
+    border: 1px solid #172340;
+    background-color: transparent !important;
+}
+.select2-selection,
+input[type='search'],
+input[type='search']:focus{
+    color: #9d9d9e;
+    border: 1px solid #172340;
+    background-color: transparent !important;
+}
+.form-select,
+.form-select:focus{
+    color: #9d9d9e;
+    border: 1px solid #172340;
+    background-color: transparent;
+}
+.uniform-uploader > .filename{
+    color: #9d9d9e;
+    border: 1px solid #172340;
+    background-color: transparent;
+}
+.uniform-uploader > .action{
+    color: #9d9d9e;
+    border: 1px solid #172340;
+    background-color: #6571ff;
+}
+.input-group .input-group-text{
+    background-color: transparent;
+    color: #9d9d9e;
+    border: 1px solid #172340;
+}
+.card-title{
+    color: #9d9d9e;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #495057;
+    background-color: #0c1427;
+    border-color: #fff transparent #fff;
+}
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+    border-color: #e9ecef transparent #dee2e6;
+    isolation: isolate;
+}
+.dropdown-menu{
+    background-color: transparent;
+    border-color: #fff;
+}
+.dropdown-menu .dropdown-item{
+    background-color: #0c1427;
+    color: #fff;
+}
+.dropdown-menu .dropdown-item:hover{
+    background-color: #070d19;
+}
+.form-select option{
+    background-color: #0c1427;
+    color: #fff;
+}
+
+.form-select option:hover,
+.form-select option:checked{
+    background-color: #070d19 !important;
+    box-shadow: 0 0 10px 100px #070d19 inset !important;
+}
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+select{
+    position: relative;
+}
+select:after{
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #fff;
+    position: absolute;
+    top: 40%;
+    right: 5px;
+    content: "";
+    z-index: 98;
+}
+.paginate_button{
+    background-color: #6571ff !important;
+    color: #fff !important;
+}

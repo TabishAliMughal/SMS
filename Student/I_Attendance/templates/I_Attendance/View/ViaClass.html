@@ -18,13 +18,13 @@
                     <div class="card">
                         <div class="card-header">
                             <h6 class="card-title">
-                                <a data-toggle="collapse" class="text-default collapsed" href="#date{{ i.date }}" aria-expanded="false">
+                                <a data-bs-toggle="collapse" class="text-default collapsed" href="#date{{ i.date }}" aria-expanded="false">
                                     {{ i.date }}<div class="text-righ">Total {{ i.total }}</div>
                                 </a>
                             </h6>
                         </div>
 
-                        <div id="date{{ i.date }}" class="collapse" data-parent="#accordion-control-right">
+                        <div id="date{{ i.date }}" class="collapse" data-bs-parent="#accordion-control-right">
                             <div class="card-body">
                                 {% for v in i.students %}
                                     {{ v }},

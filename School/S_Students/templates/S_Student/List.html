@@ -15,13 +15,13 @@
     <div class="card">
         <ul class="nav nav-tabs">
             {% for k in students %}
-                <li class="nav-item"><a href="#class{{ k.class.pk }}" class="nav-link show" data-toggle="tab">{{ k.class }}</a></li>
+                <li class="nav-item"><a href="#class{{ k.class.pk }}" class="nav-link show" data-bs-toggle="tab">{{ k.class }}</a></li>
             {% endfor %}
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">All</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">All</a>
                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(118px, 42px, 0px);">
                     {% for k in students %}
-                        <a href="#class{{ k.class.pk }}" class="dropdown-item" data-toggle="tab" aria-expanded="Flase">{{ k.class }}</a>
+                        <a href="#class{{ k.class.pk }}" class="dropdown-item" data-bs-toggle="tab" aria-expanded="Flase">{{ k.class }}</a>
                     {% endfor %}
                 </div>
             </li>
@@ -68,7 +68,7 @@
                                                     <td class="text-center">
                                                         <div class="list-icons">
                                                             <div class="dropdown">
-                                                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                                <a href="#" class="list-icons-item" data-bs-toggle="dropdown">
                                                                     <i class="icon-menu9"></i>
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-right">

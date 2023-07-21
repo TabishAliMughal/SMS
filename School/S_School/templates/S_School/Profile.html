@@ -44,7 +44,7 @@
         <div class="col-12 col-xl-8">
             {% for i in announcements %}
                 <div class="alert text-violet-800 alpha-violet border-0 alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                    <button type="button" class="close" data-bs-dismiss="alert"><span>×</span></button>
                     {{ i }}
                 </div>
             {% endfor %}
@@ -130,14 +130,14 @@
             <div class="sidebar-sticky">
                 <div class="sidebar sidebar-light sidebar-component sidebar-component-right sidebar-expand-md">
                     <div class="sidebar-content">
-                        
+
                         <!-- Navigation -->
                         <div class="card">
                             <div class="card-header bg-transparent header-elements-inline">
                                 <span class="text-uppercase font-size-sm font-weight-semibold">Navigation</span>
                                 <div class="header-elements">
                                     <div class="list-icons">
-                                        <a class="list-icons-item" data-action="collapse"></a>
+                                        <a class="list-icons-item" data-bs-action="collapse"></a>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@
             });
             var swalInit = swal.mixin({
                 buttonsStyling: false,
-                confirmButtonClass: 'btn btn-primary',
+                confirmButtonClass: 'btn btn-theme',
                 cancelButtonClass: 'btn btn-light'
             });
             swalInit({

@@ -17,19 +17,19 @@
             <form method="POST">
                 <div class="input-group mb-3">
                     <input class="form-control" type="date" name="date">
-                    <button type="submit" class="btn btn-primary">Search <i class="icon-search4 ml-2"></i></button>
+                    <button type="submit" class="btn btn-theme">Search <i class="icon-search4 ml-2"></i></button>
                 </div>
                 {% csrf_token %}
             </form>
             <br>
             <ul class="nav nav-pills nav-justified" >
-                <li class="nav-item"><a href="#present-teachers" class="nav-link rounded-round active" data-toggle="tab">Present</a></li>
-                <li class="nav-item"><a href="#absent-teachers" class="nav-link rounded-round" data-toggle="tab">Absent</a></li>
+                <li class="nav-item"><a href="#present-teachers" class="nav-link rounded-round active" data-bs-toggle="tab">Present</a></li>
+                <li class="nav-item"><a href="#absent-teachers" class="nav-link rounded-round" data-bs-toggle="tab">Absent</a></li>
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="present-teachers">
-                    <table class="table table-bordered table-striped">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="tab-pane fade" id="absent-teachers">
-                    <table class="table table-bordered table-striped">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Name</th>

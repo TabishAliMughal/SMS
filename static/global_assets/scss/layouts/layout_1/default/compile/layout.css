@@ -519,7 +519,7 @@ body {
 }
 
 .sidebar-dark {
-  background-color: #263238;
+  background-color: #0c1427;
   color: #fff;
 }
 .sidebar-dark .sidebar-mobile-toggler {
@@ -1290,7 +1290,7 @@ body {
   color: #fff;
 }
 .sidebar-dark .nav-tabs:not(.nav-tabs-bottom) .nav-link.active {
-  background-color: #263238;
+  background-color: #0c1427;
   border-color: rgba(255, 255, 255, 0.1);
 }
 .sidebar-dark .nav-tabs .nav-item.show .nav-link:not(.active) {

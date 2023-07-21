@@ -19,7 +19,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_clas">Class:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="clas" required="" id="id_clas">
+                        <select class="form-select" name="clas" required="" id="id_clas">
                             {% for i in form.clas %}
                                 {{ i }}
                             {% endfor %}
@@ -36,13 +36,13 @@
                     <label class="col-lg-3 col-form-label" for="id_valid">Valid:</label>
                     <div class="form-input" >
                         <div class="uniform-checker">
-                            <input type="checkbox" class="form-check-input-styled" name="valid" checked id="id_valid" data-fouc="">
+                            <input type="checkbox" class="form-check-input-styled" name="valid" checked id="id_valid" data-bs-fouc="">
                         </div>
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Add Class-Fee <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-themeAdd Class-Fee <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
         </div>

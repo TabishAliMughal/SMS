@@ -3978,7 +3978,7 @@ input[type=text].noui-height-helper:not(.noUi-target)[data-fouc] {
   color: #fff;
   display: inline-block;
   text-decoration: none;
-  background-color: #324148;
+  background-color: #0c1427;
   border: none;
   cursor: pointer;
   margin-left: 0.625rem;
@@ -6139,7 +6139,7 @@ a.plupload_disabled:hover {
 .file-uploading:before {
   content: "";
   display: inline-block;
-  background-color: #263238;
+  background-color: #0c1427;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -15304,7 +15304,7 @@ textarea#HandsontableCopyPaste {
  *
  *  # Responsive extension
  *
- *  Optimise the table's layout for different screen sizes through the dynamic 
+ *  Optimise the table's layout for different screen sizes through the dynamic
  *  insertion and removal of columns from the table
  *
  * ---------------------------------------------------------------------------- */
@@ -17491,7 +17491,7 @@ textarea#HandsontableCopyPaste {
   }
 }
 .glyphs > div > div:hover {
-  background-color: #324148;
+  background-color: #0c1427;
   color: #fff;
   border-radius: 0.1875rem;
 }

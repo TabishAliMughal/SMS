@@ -29,7 +29,7 @@
                 <div class="form-group mb-3" hidden>
                     <label class="col-lg-3 col-form-label" for="id_class">Class:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="clas" required id="id_clas">
+                        <select class="form-select" name="clas" required id="id_clas">
                             {% for i in form.clas %}
                                 {{ i }}
                             {% endfor %}
@@ -37,8 +37,8 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Add Section <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-theme">Add Section <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
         </div>

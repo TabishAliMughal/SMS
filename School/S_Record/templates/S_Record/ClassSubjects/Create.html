@@ -1,9 +1,5 @@
 {% extends "MainPage.html" %}
 {% load static %}
-{% block page_js %}
-	<script src="{% static './global_assets/js/demo_pages/form_multiselect.js' %}"></script>
-    <script src="{% static './global_assets/js/plugins/forms/selects/bootstrap_multiselect.js' %}"></script>
-{% endblock %}
 {% block navigation %}
     <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
     <span class="breadcrumb-item">School</span>
@@ -19,7 +15,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_clas">Class:</label>
                     <div class="form-input" >
-                        <select class="form-control" name="clas" required="" id="id_clas">
+                        <select class="form-select" name="clas" required="" id="id_clas">
                             {% for i in form.clas %}
                                 {{ i }}
                             {% endfor %}
@@ -29,7 +25,7 @@
                 <div class="form-group mb-3">
                     <label class="col-lg-3 col-form-label" for="id_subject">Subjects:</label>
                     <div class="form-input" >
-                        <select class="form-control multiselect" name="subject" multiple="multiple" required="" data-fouc="">
+                        <select class="form-select" name="subject" multiple="multiple" required="" data-bs-fouc="">
                             {% for i in form.subject %}
                                 {{ i }}
                             {% endfor %}
@@ -37,8 +33,8 @@
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Add Class-Subject <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-theme">Add Class-Subject <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
         </div>

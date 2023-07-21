@@ -17,8 +17,8 @@
             <h5 class="card-title">{{ teacher.clas }}</h5>
         </div>
         <div class="card-body">
-            <div class="text-right">
-                <a href="{% url 'teacher_homework:homework_create' %}" class="btn btn-primary"><i class="icon-add mr-2"></i> New Homework</a>
+            <div class="text-end">
+                <a href="{% url 'teacher_homework:homework_create' %}" class="btn btn-theme"><i class="icon-add mr-2"></i> New Homework</a>
             </div>
             <br>
             <div class="datatable-scroll-wrap">
@@ -35,16 +35,16 @@
                     </thead>
                     <tbody>
                         {% for i in homework %}
-                            <tr role="row" class="odd" data-href="{% url 'teacher_homework:homework_detail' i.pk %}">
+                            <tr role="row" class="odd" data-bs-href="{% url 'teacher_homework:homework_detail' i.pk %}">
                                 <td>{{ i.clas.clas }}</td>
                                 <td>{{ i.clas.name }}</td>
                                 <td>{{ i.subject }}</td>
                                 <td>{{ i.date }}</td>
-                                <td><button type="button" class="btn btn-primary" data-popup="popover" title="" data-content="{% for v in i.status.completed %}{{ v }}{% endfor %}" data-original-title="Completed Students">{{ i.status.completed_count }} of {{ i.status.incomplete_count }}</button></td>
+                                <td><button type="button" class="btn btn-theme" data-bs-popup="popover" title="" data-bs-content="{% for v in i.status.completed %}{{ v }}{% endfor %}" data-bs-original-title="Completed Students">{{ i.status.completed_count }} of {{ i.status.incomplete_count }}</button></td>
                                 <td class="text-center">
                                     <div class="list-icons">
                                         <div class="dropdown">
-                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                            <a href="#" class="list-icons-item" data-bs-toggle="dropdown">
                                                 <i class="icon-menu9"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">

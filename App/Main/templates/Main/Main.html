@@ -36,8 +36,38 @@
                             <td tabindex="0" class="sorting_1" style="">{{ i.full_name }}<a class="float-right" href="http://{{ i.domain }}" ><i class="icon-arrow-up-right32"></i></a></td>
                             <td>{{ i.mobile }}</td>
                             <td>{{ i.principal_name }}</td>
-                            <td>{{ i.students.count }} <a data-popup="popover" data-placement="top" title="" data-content="{% for v in i.students.students %}#{{ v }} {% endfor %}" data-original-title="Students List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
-                            <td>{{ i.teachers.count }} <a data-popup="popover" data-placement="top" title="" data-content="{% for v in i.teachers.teachers %}#{{ v }} {% endfor %}" data-original-title="Teachers List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
+                            <td>{{ i.students.count }} <a data-bs-popup="popover" data-bs-placement="top" title="" data-bs-content="{% for v in i.students.students %}#{{ v }} {% endfor %}" data-bs-original-title="Students List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
+                            <td>{{ i.teachers.count }} <a data-bs-popup="popover" data-bs-placement="top" title="" data-bs-content="{% for v in i.teachers.teachers %}#{{ v }} {% endfor %}" data-bs-original-title="Teachers List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
+                            <td hidden></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Contact Us</h5>
+        </div>
+        <div class="datatable-scroll-wrap">
+            <table class="table datatable-responsive dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                <thead>
+                    <tr role="row">
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="G.R Number: activate to sort column descending" aria-sort="ascending">School Name</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Contact: activate to sort column descending" aria-sort="ascending">Contact</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Student Name: activate to sort column descending" aria-sort="ascending">Principal Name</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Father's Name: activate to sort column descending" aria-sort="ascending">Total Students</th>
+                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date Of Admission: activate to sort column descending" aria-sort="ascending">Total Teachers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in schools %}
+                        <tr role="row" class="odd">
+                            <td tabindex="0" class="sorting_1" style="">{{ i.full_name }}<a class="float-right" href="http://{{ i.domain }}" ><i class="icon-arrow-up-right32"></i></a></td>
+                            <td>{{ i.mobile }}</td>
+                            <td>{{ i.principal_name }}</td>
+                            <td>{{ i.students.count }} <a data-bs-popup="popover" data-bs-placement="top" title="" data-bs-content="{% for v in i.students.students %}#{{ v }} {% endfor %}" data-bs-original-title="Students List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
+                            <td>{{ i.teachers.count }} <a data-bs-popup="popover" data-bs-placement="top" title="" data-bs-content="{% for v in i.teachers.teachers %}#{{ v }} {% endfor %}" data-bs-original-title="Teachers List">&nbsp; &nbsp; <i class="icon-eye2"></i></a></td>
                             <td hidden></td>
                         </tr>
                     {% endfor %}
@@ -64,7 +94,7 @@
             });
             var swalInit = swal.mixin({
                 buttonsStyling: false,
-                confirmButtonClass: 'btn btn-primary',
+                confirmButtonClass: 'btn btn-theme
                 cancelButtonClass: 'btn btn-light'
             });
             swalInit({

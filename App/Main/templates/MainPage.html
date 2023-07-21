@@ -16,6 +16,7 @@
 		<link href="{% static './assets/css/layout.css' %}" rel="stylesheet" type="text/css">
 		<link href="{% static './assets/css/components.min.css' %}" rel="stylesheet" type="text/css">
 		<link href="{% static './assets/css/colors.css' %}" rel="stylesheet" type="text/css">
+		<link href="{% static './assets/css/style.css' %}" rel="stylesheet" type="text/css">
 		<!-- /global stylesheets -->
 
 		<!-- Core JS files -->
@@ -33,7 +34,7 @@
 
 	</head>
 
-	<body id="id_body" data-spy="scroll" data-target=".sidebar-component-right">
+	<body id="id_body" data-bs-spy="scroll" data-bs-target=".sidebar-component-right">
 
 
 		{% include "Includes/Navbar.html" %}
@@ -43,53 +44,57 @@
 			{% include "Includes/Sidebar.html" %}
 			
 			<!-- Main content -->
-			<div class="content-wrapper overflow-hidden">
+			<div class="content-wrapper overflow-hidden bg-body-theme">
+				<div class="content-inner">
 
-				<!-- Page header -->
-				<div class="page-header page-header-light">
-					<div class="page-header-content header-elements-md-inline">
-						<div class="page-title d-flex">
-							<h4>
-								{% if request.session.school.full_name %}
-									<span class="font-weight-semibold">School</span> | {{ request.session.school.full_name }}
-								{% else %}
-									School Management System
-								{% endif %}
-							</h4>
+					<!-- Page header -->
+					<div class="page-header">
+						<div class="page-header-content header-elements-md-inline">
+							<div class="page-title d-flex">
+								<h4>
+									{% if request.session.school.full_name %}
+										<span class="font-weight-semibold">School</span> | {{ request.session.school.full_name }}
+									{% else %}
+										School Management System
+									{% endif %}
+								</h4>
+							</div>
 						</div>
-					</div>
 
-					<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-						<div class="d-flex">
-							<div class="breadcrumb">
-								{% block navigation %}{% endblock %}
+						<div class="breadcrumb-line header-elements-md-inline">
+							<div class="d-flex">
+								<div class="breadcrumb">
+									{% block navigation %}{% endblock %}
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- /page header -->
+					<!-- /page header -->
 
 
-				<!-- Content area -->
-				<div class="content">
-					{% block content %}
-					{% endblock %}
+					<!-- Content area -->
+					<div class="content">
+						{% block content %}
+						{% endblock %}
 
-					{% include "Includes/Login.html" %}
-				</div>
-				<!-- /content area -->
-
-
-				<!-- Footer -->
-				<div class="navbar navbar-expand-lg navbar-light" style="bottom: 0;">
-					<div class="navbar-collapse collapse show ms-0 me-0" id="navbar-footer">
-						<span class="navbar-text">
-							Web Application Developed By<a href="https://web.whatsapp.com/send?phone=+923112918396&text=Hello Tabish Ali Mughal"> Tabish Ali Mughal</a></a>
-						</span>
+						{% include "Includes/Login.html" %}
 					</div>
-				</div>
-				<!-- /footer -->
+					<!-- /content area -->
 
+					<br>
+					<br>
+					<br>
+					<!-- Footer -->
+					<div class="navbar navbar-expand-lg border-top footer">
+						<div class="navbar-collapse collapse show ms-0 me-0" id="navbar-footer">
+							<span class="navbar-text">
+								Web Application Developed By<a href="https://web.whatsapp.com/send?phone=+923112918396&text=Hello Tabish Ali Mughal"> Tabish Ali Mughal</a></a>
+							</span>
+						</div>
+					</div>
+					<!-- /footer -->
+
+				</div>
 			</div>
 			<!-- /main content -->
 

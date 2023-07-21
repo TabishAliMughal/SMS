@@ -457,7 +457,7 @@ body {
   display: inline-block; }
 
 .sidebar-dark {
-  background-color: #263238;
+  background-color: #0c1427;
   color: #fff; }
   .sidebar-dark .sidebar-mobile-toggler {
     color: rgba(255, 255, 255, 0.9);
@@ -477,27 +477,27 @@ body {
   color: rgba(255, 255, 255, 0.9); }
   .sidebar-dark .nav-sidebar .nav-link:not(.disabled):hover,
   .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar .nav-link:not(.disabled):hover {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.15); }
+    color: #6571ff;
+    /*background-color: rgba(0, 0, 0, 0.15); */}
 
 .sidebar-dark .nav-sidebar .nav-item > .nav-link.active,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar .nav-item > .nav-link.active {
-  background-color: rgba(0, 0, 0, 0.15);
-  color: #fff; }
+  /*background-color: rgba(0, 0, 0, 0.15);*/
+  color: #6571ff; }
 
 .sidebar-dark .nav-sidebar .nav-item-open > .nav-link:not(.disabled),
 .sidebar-dark .nav-sidebar > .nav-item-expanded:not(.nav-item-open) > .nav-link,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar .nav-item-open > .nav-link:not(.disabled),
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar > .nav-item-expanded:not(.nav-item-open) > .nav-link {
-  background-color: rgba(0, 0, 0, 0.15);
+  /*background-color: rgba(0, 0, 0, 0.15);*/
   color: #fff; }
 
 .sidebar-dark .nav-sidebar > .nav-item-open > .nav-link:not(.disabled),
 .sidebar-dark .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar > .nav-item-open > .nav-link:not(.disabled),
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #26A69A;
-  color: #fff; }
+  /*background-color: #26A69A;*/
+  color: #6571ff; }
 
 .sidebar-dark .nav-sidebar .nav-item-header,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar .nav-item-header {
@@ -509,7 +509,7 @@ body {
 
 .sidebar-dark .nav-sidebar > .nav-item-submenu > .nav-group-sub,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar > .nav-item-submenu > .nav-group-sub {
-  background-color: rgba(0, 0, 0, 0.15); }
+  /*background-color: rgba(0, 0, 0, 0.15); */}
 
 .sidebar-dark[class*=bg-] .nav-sidebar > .nav-item-open > .nav-link:not(.disabled),
 .sidebar-dark[class*=bg-] .nav-sidebar > .nav-item > .nav-link.active,
@@ -1028,7 +1028,7 @@ body {
     .sidebar-dark .nav-tabs .nav-link.active {
       color: #fff; }
   .sidebar-dark .nav-tabs:not(.nav-tabs-bottom) .nav-link.active {
-    background-color: #263238;
+    background-color: #0c1427;
     border-color: rgba(255, 255, 255, 0.1); }
   .sidebar-dark .nav-tabs .nav-item.show .nav-link:not(.active) {
     color: #fff; }

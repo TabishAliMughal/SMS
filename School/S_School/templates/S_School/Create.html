@@ -70,13 +70,13 @@
                     <label class="col-lg-3 col-form-label" for="id_active">Active:</label>
                     <div class="form-input" >
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input-styled" name="active" id="id_active" data-fouc="" {% if form.active.value %}checked{% endif %} >
+                            <input type="checkbox" class="form-check-input-styled" name="active" id="id_active" data-bs-fouc="" {% if form.active.value %}checked{% endif %} >
                         </div>
                     </div>
                 </div>
                 {% csrf_token %}
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Add School <i class="icon-paperplane ml-2"></i></button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-theme">Add School <i class="icon-paperplane ml-2"></i></button>
                 </div>
             </form>
             <!-- <button type="button" class="btn btn-danger" id="pnotify-already-exist">Launch <i class="icon-play3 ml-2"></i></button> -->
